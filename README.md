@@ -1,6 +1,6 @@
 # ScorAce Plugins
 
-> **当前状态：恢复公开试用候选。** Windows helper 已改为原生 `tools/scorace-runtime.cmd`，不要求修改或绕过脚本执行策略，也不要求关闭系统保护。Windows 验证范围包含 hosted x64 CI，以及 Windows 11 ARM64 上通过系统 x64 仿真的客户端证据；后者不能写成实体 x64 客户端原生验证。
+> **当前状态：暂停公开下载。** 真实公开 Windows `method read` 发现 runtime `0.1.0` 内置方法仍指向 `.ps1`；虽然 Plugin helper 已改为原生 `tools/scorace-runtime.cmd`，当前 `0.1.0` 不公开下载。不要降低或绕过 PowerShell ExecutionPolicy，也不要关闭任何系统保护；后续将以不替换旧 runtime bytes 的 `0.1.1` 修复。
 
 ScorAce 的公开 Codex Plugin 试用仓库。当前发行是公开试用候选，不是稳定版。
 
@@ -13,7 +13,7 @@ codex plugin marketplace add .
 codex plugin add scorace-learning@scorace
 ```
 
-安装后请开启新的 Codex 会话，以加载 `scorace-learning` Skill。卸载使用：
+当前 `0.1.0` release 因上述 runtime method mismatch 暂停，不应视为可用的公开下载入口。安装后请开启新的 Codex 会话，以加载 `scorace-learning` Skill。卸载使用：
 
 ```bash
 codex plugin remove scorace-learning@scorace
@@ -23,7 +23,7 @@ codex plugin remove scorace-learning@scorace
 
 - Plugin：`scorace-learning` `0.8.0-candidate.20260917`
 - 程序：`scorace` `0.1.0`
-- 发布标签：[`scorace-v0.1.0`](https://github.com/scoracecom/plugins/releases/tag/scorace-v0.1.0)
+- 发布标签：[`scorace-v0.1.0`](https://github.com/scoracecom/plugins/releases/tag/scorace-v0.1.0)（当前暂停，不可公开下载）
 - ScorAce source revision：`240c6451e6e7accc03e3ce70271b25eda2e9e1a1`
 - Runtime source tree SHA-256：`aa06385725691ec29826637549e293c88975d33547a78dbe747f25d8f58b176c`
 - main merge：`2a7a192c26c4bec193ebcc027fd4c97a2c50d2cd`
