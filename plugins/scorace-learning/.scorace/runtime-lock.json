@@ -1,0 +1,220 @@
+{
+  "schema": "scorace-runtime-lock/v2",
+  "plugin_id": "scorace-learning",
+  "plugin_version": "0.8.0-candidate.20260916",
+  "program": "scorace",
+  "program_version": "0.1.0",
+  "cli_contract": "scorace-cli/v2",
+  "learning_api": "scorace-learning-api/v2",
+  "state_compatibility": {
+    "contract": "scorace-study-state/v2",
+    "legacy_read": [
+      "scorace-study-state/v1"
+    ],
+    "write_policy": "baseline-preserving"
+  },
+  "source_revision": "240c6451e6e7accc03e3ce70271b25eda2e9e1a1",
+  "source_tree_sha256": "aa06385725691ec29826637549e293c88975d33547a78dbe747f25d8f58b176c",
+  "features": {
+    "study": true,
+    "read_source": false,
+    "stdio_mcp": false
+  },
+  "runtimes": {
+    "darwin-arm64": {
+      "target": {
+        "os": "darwin",
+        "arch": "arm64",
+        "os_major_min": 26,
+        "os_major_max": 26
+      },
+      "system_trust": {
+        "kind": "apple_developer_id",
+        "team_id": "3G2K3NF4U6"
+      },
+      "archive": {
+        "url": "https://github.com/scoracecom/plugins/releases/download/scorace-v0.1.0/scorace-0.1.0-darwin-arm64.zip",
+        "sha256": "b0666b3711cfdbad39d0e0459b6c219ec4f3a0841a8e8a8e3a54a4d58b9da0d8",
+        "bytes": 39200447,
+        "format": "zip",
+        "root": "scorace-0.1.0-darwin-arm64"
+      },
+      "executable": {
+        "path": "bin/scorace",
+        "sha256": "60b53173fb446caf12368eacbff2856d7765dd0dbd75b549e975fab4182cb1ba",
+        "bytes": 122330752
+      },
+      "payload": [
+        {
+          "path": "bin/scorace",
+          "sha256": "60b53173fb446caf12368eacbff2856d7765dd0dbd75b549e975fab4182cb1ba",
+          "bytes": 122330752,
+          "role": "runtime"
+        },
+        {
+          "path": "LICENSE.txt",
+          "sha256": "65c82e0f97bf555643493669560cb405ba5a4e1f1e465dc4584b1f018036633f",
+          "bytes": 1302,
+          "role": "license"
+        },
+        {
+          "path": "runtime-release.json",
+          "sha256": "418c2e0f6886c1ed457d6ca42e280f04ff4acdcddce5a7e6aa0142c7f7358091",
+          "bytes": 2988,
+          "role": "metadata"
+        },
+        {
+          "path": "share/methods/scorace-study/agents/openai.yaml",
+          "sha256": "1e7b6828fc99e9cf5dc879157f6b0135eb0ea273fa9f994ab19449d923d4415f",
+          "bytes": 299,
+          "role": "public_resource"
+        },
+        {
+          "path": "share/methods/scorace-study/assets/examples/answers.md",
+          "sha256": "0c0c686aa85698ac5b42524e78ea04755362ea12e8b34a36187b2aa88b9fc948",
+          "bytes": 2017,
+          "role": "public_resource"
+        },
+        {
+          "path": "share/methods/scorace-study/assets/examples/practice.md",
+          "sha256": "1f10bac7482cfad406ec8e3bfdcc16b48822d8b9a924fb6ab0a5feaa5df346f9",
+          "bytes": 2146,
+          "role": "public_resource"
+        },
+        {
+          "path": "share/methods/scorace-study/assets/examples/README.md",
+          "sha256": "d3cd24cf844024f3c4e3760fbf0aa7f7b19b9c64178853606780ff140d103cd5",
+          "bytes": 4390,
+          "role": "public_resource"
+        },
+        {
+          "path": "share/methods/scorace-study/method.md",
+          "sha256": "b6c83335808284a107bda45d469501463676818a4a4fa8ab15fd4adcdf6222a4",
+          "bytes": 1623,
+          "role": "public_resource"
+        },
+        {
+          "path": "share/methods/scorace-study/references/interactive-content.md",
+          "sha256": "f39ecdf7864a428c97108062afb0a92d17c7c37e3955954953fbb99600c76c82",
+          "bytes": 9629,
+          "role": "public_resource"
+        },
+        {
+          "path": "share/methods/scorace-study/scorace-method.json",
+          "sha256": "4f057b7f80e03eeda97273193dbf9fa07e59b60d650070c57bcb2e5ae2bc713d",
+          "bytes": 383,
+          "role": "public_resource"
+        },
+        {
+          "path": "share/methods/scorace-study/SKILL.md",
+          "sha256": "873b87349794d40c67e1046b02357ed2f2361f022256ca1167533f47137acc38",
+          "bytes": 50234,
+          "role": "public_resource"
+        },
+        {
+          "path": "THIRD_PARTY_NOTICES.md",
+          "sha256": "e3af537bd3a813cc0777afbaed76a4ab28c873f4e39e353468934424f5d3d42e",
+          "bytes": 160394,
+          "role": "license"
+        }
+      ]
+    },
+    "windows-x64": {
+      "target": {
+        "os": "windows",
+        "arch": "x64",
+        "os_major_min": 11,
+        "os_major_max": 11
+      },
+      "system_trust": {
+        "kind": "unsigned"
+      },
+      "archive": {
+        "url": "https://github.com/scoracecom/plugins/releases/download/scorace-v0.1.0/scorace-0.1.0-windows-x64.zip",
+        "sha256": "3858bb38087b1cb8d21c5fc1f7889488ca2a65211d7c46475182703a7fed2c34",
+        "bytes": 35534385,
+        "format": "zip",
+        "root": "scorace-0.1.0-windows-x64"
+      },
+      "executable": {
+        "path": "bin/scorace.exe",
+        "sha256": "3d860a43e4d3b55dbeb8a3cfd5afb06b8d6702d177ea0a60d43bd1b671fe084f",
+        "bytes": 94839808
+      },
+      "payload": [
+        {
+          "path": "bin/scorace.exe",
+          "sha256": "3d860a43e4d3b55dbeb8a3cfd5afb06b8d6702d177ea0a60d43bd1b671fe084f",
+          "bytes": 94839808,
+          "role": "runtime"
+        },
+        {
+          "path": "LICENSE.txt",
+          "sha256": "dccd377daa23db07898b9a711d69d0bd7e0cbec7a6ec063144cd6267e3ea51cb",
+          "bytes": 1326,
+          "role": "license"
+        },
+        {
+          "path": "runtime-release.json",
+          "sha256": "410e242fb32859375d53ffa2b0afacf012290077abbc4b51c6e71ac1b7d40337",
+          "bytes": 2990,
+          "role": "metadata"
+        },
+        {
+          "path": "share/methods/scorace-study/agents/openai.yaml",
+          "sha256": "1e7b6828fc99e9cf5dc879157f6b0135eb0ea273fa9f994ab19449d923d4415f",
+          "bytes": 299,
+          "role": "public_resource"
+        },
+        {
+          "path": "share/methods/scorace-study/assets/examples/answers.md",
+          "sha256": "0c0c686aa85698ac5b42524e78ea04755362ea12e8b34a36187b2aa88b9fc948",
+          "bytes": 2017,
+          "role": "public_resource"
+        },
+        {
+          "path": "share/methods/scorace-study/assets/examples/practice.md",
+          "sha256": "1f10bac7482cfad406ec8e3bfdcc16b48822d8b9a924fb6ab0a5feaa5df346f9",
+          "bytes": 2146,
+          "role": "public_resource"
+        },
+        {
+          "path": "share/methods/scorace-study/assets/examples/README.md",
+          "sha256": "d3cd24cf844024f3c4e3760fbf0aa7f7b19b9c64178853606780ff140d103cd5",
+          "bytes": 4390,
+          "role": "public_resource"
+        },
+        {
+          "path": "share/methods/scorace-study/method.md",
+          "sha256": "b6c83335808284a107bda45d469501463676818a4a4fa8ab15fd4adcdf6222a4",
+          "bytes": 1623,
+          "role": "public_resource"
+        },
+        {
+          "path": "share/methods/scorace-study/references/interactive-content.md",
+          "sha256": "f39ecdf7864a428c97108062afb0a92d17c7c37e3955954953fbb99600c76c82",
+          "bytes": 9629,
+          "role": "public_resource"
+        },
+        {
+          "path": "share/methods/scorace-study/scorace-method.json",
+          "sha256": "4f057b7f80e03eeda97273193dbf9fa07e59b60d650070c57bcb2e5ae2bc713d",
+          "bytes": 383,
+          "role": "public_resource"
+        },
+        {
+          "path": "share/methods/scorace-study/SKILL.md",
+          "sha256": "873b87349794d40c67e1046b02357ed2f2361f022256ca1167533f47137acc38",
+          "bytes": 50234,
+          "role": "public_resource"
+        },
+        {
+          "path": "THIRD_PARTY_NOTICES.md",
+          "sha256": "bf32ac146c6e4dc29752b01d43d5480b785f8edca8c13a7da0927075dd01ba3b",
+          "bytes": 163400,
+          "role": "license"
+        }
+      ]
+    }
+  }
+}

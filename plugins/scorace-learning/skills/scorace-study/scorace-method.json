@@ -1,0 +1,13 @@
+{
+  "schema": "scorace-method/v1",
+  "id": "scorace-study",
+  "source_id": "scorace-product/methods/scorace-study",
+  "name": "直接讲解与示范",
+  "purpose": "先解释核心关系并示范一个完整例题，再按用户需要练习或追问。",
+  "entry": "method.md",
+  "resources": [],
+  "disabled": false,
+  "compatibility": {
+    "core": "scorace-study-state/v1"
+  }
+}

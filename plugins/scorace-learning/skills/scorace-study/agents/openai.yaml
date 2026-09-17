@@ -1,0 +1,4 @@
+interface:
+  display_name: "ScorAce 学习与辅导"
+  short_description: "保存可修订记忆并跨会话接续，制定和调整具体学习与复习计划"
+  default_prompt: "使用 $scorace-study，继续我的学习；按需要读取记忆和计划，并按可用时间给我具体任务。"

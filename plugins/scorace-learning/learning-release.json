@@ -1,0 +1,182 @@
+{
+  "schema": "scorace-learning-release/v1",
+  "plugin_version": "0.8.0-candidate.20260916",
+  "learning_api_version": "scorace-learning-api/v2",
+  "learning_core_version": "scorace-study-state/v2",
+  "build_source": "ScorAce product sources",
+  "source_tree_sha256": "ffafa425e67df48fb2dba0474af446a6fe7f6197aaf51299d653a15a56a29c2e",
+  "source_files": [
+    {
+      "path": "methods/scorace-study/agents/openai.yaml",
+      "sha256": "1e7b6828fc99e9cf5dc879157f6b0135eb0ea273fa9f994ab19449d923d4415f",
+      "bytes": 299
+    },
+    {
+      "path": "methods/scorace-study/assets/examples/answers.md",
+      "sha256": "0c0c686aa85698ac5b42524e78ea04755362ea12e8b34a36187b2aa88b9fc948",
+      "bytes": 2017
+    },
+    {
+      "path": "methods/scorace-study/assets/examples/practice.md",
+      "sha256": "1f10bac7482cfad406ec8e3bfdcc16b48822d8b9a924fb6ab0a5feaa5df346f9",
+      "bytes": 2146
+    },
+    {
+      "path": "methods/scorace-study/assets/examples/README.md",
+      "sha256": "d3cd24cf844024f3c4e3760fbf0aa7f7b19b9c64178853606780ff140d103cd5",
+      "bytes": 4390
+    },
+    {
+      "path": "methods/scorace-study/method.md",
+      "sha256": "b6c83335808284a107bda45d469501463676818a4a4fa8ab15fd4adcdf6222a4",
+      "bytes": 1623
+    },
+    {
+      "path": "methods/scorace-study/references/interactive-content.md",
+      "sha256": "f39ecdf7864a428c97108062afb0a92d17c7c37e3955954953fbb99600c76c82",
+      "bytes": 9629
+    },
+    {
+      "path": "methods/scorace-study/scorace-method.json",
+      "sha256": "4f057b7f80e03eeda97273193dbf9fa07e59b60d650070c57bcb2e5ae2bc713d",
+      "bytes": 383
+    },
+    {
+      "path": "methods/scorace-study/SKILL.md",
+      "sha256": "873b87349794d40c67e1046b02357ed2f2361f022256ca1167533f47137acc38",
+      "bytes": 50234
+    },
+    {
+      "path": "scorace/adapters/learning/demo-cli.mjs",
+      "sha256": "2e77b0a575f71e3fd94657887b540879264044adc8fe7ca70e44777fb890b737",
+      "bytes": 39004
+    },
+    {
+      "path": "scorace/adapters/learning/network-browser.mjs",
+      "sha256": "28083b1a0dcd746782b162561399374bb9f3be7b9a372177d883b53bc64fd970",
+      "bytes": 49466
+    },
+    {
+      "path": "scorace/adapters/learning/study-assets-cli.mjs",
+      "sha256": "791e04708d30cffc7407c849d591351b49ad07514848aadb92597b1eaf0f0906",
+      "bytes": 28318
+    },
+    {
+      "path": "scorace/application/learning/index.mjs",
+      "sha256": "a800cc30dbd08e32c7aa6338a7c506f1d47ea6332a413aa3ce4fc59da672fce1",
+      "bytes": 602
+    },
+    {
+      "path": "scorace/application/learning/review-plan-rules.mjs",
+      "sha256": "cee16f77519ceb29b5594f35c05a756a9170ddd4dbc6054720902dea09b09ab9",
+      "bytes": 35365
+    },
+    {
+      "path": "scorace/application/learning/study-primitives.mjs",
+      "sha256": "1b04751cc5f78811b8071803e56837c71a9c07aa38414a7538ff51cd26d5c5c8",
+      "bytes": 1527
+    },
+    {
+      "path": "scorace/application/learning/study-store.mjs",
+      "sha256": "31476ff636811f91e2f66efab9a8b4003bb71568129c1262dc83c92cd21ddf9e",
+      "bytes": 569497
+    },
+    {
+      "path": "scorace/platform/learning/local-file-io.mjs",
+      "sha256": "8246bd90efec89489f80ef4b7c88418cecde6b9357203bafc3cbc8f81a25d356",
+      "bytes": 3015
+    },
+    {
+      "path": "scorace/platform/learning/method-file-source.mjs",
+      "sha256": "e337873583b38aabdd6e21b0868f417f1e2ade19614e3040e6de1468855084a4",
+      "bytes": 15858
+    },
+    {
+      "path": "scorace/presentation/learning/interactive-demo.mjs",
+      "sha256": "dc2350d962680af09860b11db47cd0589942d6868459ec3d98f4be2fcec95519",
+      "bytes": 66493
+    },
+    {
+      "path": "scorace/presentation/learning/quadratic-renderer.mjs",
+      "sha256": "73cb5ad317562fb9603fdf66ba82449fed9010c3cbdbfa1082456f7cf279972f",
+      "bytes": 7924
+    }
+  ],
+  "files": [
+    {
+      "path": ".codex-plugin/plugin.json",
+      "sha256": "a52b5d254dfc4f3ddab0b6bd416e8c3415131a1656a723ace1d84b834dfb83dc",
+      "bytes": 2161
+    },
+    {
+      "path": ".scorace/runtime-lock.json",
+      "sha256": "b2bd4a3f3b59eb058f90ce6339a05b9d2f080d8038fe542507d36ec8b81ada64",
+      "bytes": 7714
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "2c015308e8b3448d7420c6ec2ede1ce2a11d2141c9e2fb201662148c48c2e518",
+      "bytes": 1077
+    },
+    {
+      "path": "README.md",
+      "sha256": "a52691125ab06599f818956a975864163ee0bbd932230571ea8d133729c42042",
+      "bytes": 3464
+    },
+    {
+      "path": "skills/scorace-study/agents/openai.yaml",
+      "sha256": "1e7b6828fc99e9cf5dc879157f6b0135eb0ea273fa9f994ab19449d923d4415f",
+      "bytes": 299
+    },
+    {
+      "path": "skills/scorace-study/assets/examples/answers.md",
+      "sha256": "0c0c686aa85698ac5b42524e78ea04755362ea12e8b34a36187b2aa88b9fc948",
+      "bytes": 2017
+    },
+    {
+      "path": "skills/scorace-study/assets/examples/practice.md",
+      "sha256": "1f10bac7482cfad406ec8e3bfdcc16b48822d8b9a924fb6ab0a5feaa5df346f9",
+      "bytes": 2146
+    },
+    {
+      "path": "skills/scorace-study/assets/examples/README.md",
+      "sha256": "d3cd24cf844024f3c4e3760fbf0aa7f7b19b9c64178853606780ff140d103cd5",
+      "bytes": 4390
+    },
+    {
+      "path": "skills/scorace-study/method.md",
+      "sha256": "b6c83335808284a107bda45d469501463676818a4a4fa8ab15fd4adcdf6222a4",
+      "bytes": 1623
+    },
+    {
+      "path": "skills/scorace-study/references/interactive-content.md",
+      "sha256": "f39ecdf7864a428c97108062afb0a92d17c7c37e3955954953fbb99600c76c82",
+      "bytes": 9629
+    },
+    {
+      "path": "skills/scorace-study/scorace-method.json",
+      "sha256": "4f057b7f80e03eeda97273193dbf9fa07e59b60d650070c57bcb2e5ae2bc713d",
+      "bytes": 383
+    },
+    {
+      "path": "skills/scorace-study/SKILL.md",
+      "sha256": "873b87349794d40c67e1046b02357ed2f2361f022256ca1167533f47137acc38",
+      "bytes": 50234
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "sha256": "5b100d6f8cfba2f9edd4e98b4554b54466d880a1e1cbabfa2244e7dad737416f",
+      "bytes": 354
+    },
+    {
+      "path": "tools/scorace-runtime.ps1",
+      "sha256": "2ed6724796353cc89213e0c648e564b487d742a80eacfbe004bff02d6614ed82",
+      "bytes": 38615
+    },
+    {
+      "path": "tools/scorace-runtime.sh",
+      "sha256": "e29e7b9e316879d9fb15f0c59431634e1c3d946b40847cdd1f5f826e9da311f1",
+      "bytes": 37424
+    }
+  ]
+}
