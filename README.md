@@ -33,8 +33,10 @@ codex plugin remove scorace-learning@scorace
 仓库只包含公开 Plugin、方法资源、helper、发行清单和 runtime lock，不包含 ScorAce 私有源码或 runtime 二进制。需要本地程序时，helper 仅在用户授权后按 lock 从以下固定地址取得对应平台归档：
 
 - [macOS arm64 ZIP](https://github.com/scoracecom/plugins/releases/download/scorace-v0.1.1/scorace-0.1.1-darwin-arm64.zip)：Developer ID 签名及公证已 Accepted，公开重下 hash 与正式产物一致。
-- [Windows x64 ZIP](https://github.com/scoracecom/plugins/releases/download/scorace-v0.1.1/scorace-0.1.1-windows-x64.zip)：hosted x64 CI 已通过；Windows 11 ARM64 客户端在系统保护保持开启、PowerShell ExecutionPolicy 为 `Restricted` 时通过系统 x64 仿真完成公开下载、安装和代表学习任务。该结果不能冒充实体 Windows x64 客户端原生验证。
+- [Windows x64 ZIP](https://github.com/scoracecom/plugins/releases/download/scorace-v0.1.1/scorace-0.1.1-windows-x64.zip)：hosted Windows x64 提供原生 x64 工程验证；Parallels Windows 11 ARM64 在 PowerShell ExecutionPolicy 为 `Restricted`、Defender 保持启用且其他系统安全设置不变时，通过系统 x64 仿真完成公开下载、安装和代表学习任务。应用控制记录为评估状态，不宣称已验证强制执行模式；该结果也不冒充实体 Windows x64 客户端原生验证。
 
 支持范围是原生 macOS 26.x/arm64，以及 Windows x64 程序在 hosted x64 CI 与 Windows 11 ARM64 系统 x64 仿真中的验证路径；不声称已有实体 x64 客户端原生验证。Windows 归档明确为 unsigned；精确 SHA-256 只证明文件完整性，不代表 Windows 系统信任。请保持 SmartScreen、应用控制和其他系统保护开启。
+
+Windows helper 对受管 Plugin、runtime 或本地 archive 路径包含 `!` 的情况返回 `path_unsupported`。该限制不适用于学习内容或普通文本参数。
 
 详细 helper 用法、平台边界和数据安全说明见 [`plugins/scorace-learning/README.md`](plugins/scorace-learning/README.md)。

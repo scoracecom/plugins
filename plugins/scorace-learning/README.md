@@ -2,7 +2,7 @@
 
 这是公开的薄 Plugin 候选：包含 Skill、方法资源和按平台选择的 runtime helper，不携带 ScorAce 学习核心源码。优先使用宿主已经装配的 ScorAce 产品学习 API；普通材料的取得、读取、解析和理解仍由宿主承担。
 
-本次公开试用发行固定为 Plugin `0.8.0-candidate.20260917.1` 与程序 `scorace` `0.1.1`，不是稳定版；release 待主线程发布。安装入口和仓库说明见上级公开仓库 README。
+本次公开试用发行固定为 Plugin `0.8.0-candidate.20260917.1` 与程序 `scorace` `0.1.1`，不是稳定版；0.1.1 已作为公开试用版发布。安装入口和仓库说明见上级公开仓库 README。
 
 ## 平台与命令
 
@@ -30,9 +30,11 @@ cmd.exe /d /s /c ""<本 Skill 目录>\..\..\tools\scorace-runtime.cmd" run study
 
 Plugin 使用 `scorace-runtime-lock/v2`，按实际平台从唯一的 `darwin-arm64` 或 `windows-x64` 条目选择准确版本；Windows helper 读取由 `.scorace/runtime-lock.json` 自动生成的 `.scorace/runtime-lock.windows.cmd` projection，构建检查会拒绝 projection 漂移，不应手写第二份锁。每个平台的归档、可执行文件和 payload 都必须逐项匹配 lock 中的精确路径、大小和 SHA-256 摘要。摘要只证明字节完整性，不替代操作系统信任。
 
-macOS 条目要求 Apple Developer ID（`system_trust.kind: apple_developer_id`）和该条目自己的 Team ID。Windows 条目明确为 unsigned（`system_trust.kind: unsigned`），不要求也不填写 Apple Team ID；Windows 的 unsigned 与精确摘要不等于 Windows 系统信任。SmartScreen、应用控制和其他系统策略仍由 Windows 决定，不需要关闭或绕过，本候选不宣称这些策略已经验证。
+macOS 条目要求 Apple Developer ID（`system_trust.kind: apple_developer_id`）和该条目自己的 Team ID。Windows 条目明确为 unsigned（`system_trust.kind: unsigned`），不要求也不填写 Apple Team ID；Windows 的 unsigned 与精确摘要不等于 Windows 系统信任。Windows 测试期间 PowerShell ExecutionPolicy 为 `Restricted`、Defender 保持启用且其他系统安全设置不变；应用控制记录为评估状态，不宣称已验证强制执行模式。SmartScreen 和其他系统策略仍由 Windows 决定，不需要关闭或绕过。
 
-当前 `.scorace/runtime-lock.json` 已固定 Plugin `0.8.0-candidate.20260917.1` 与 `scorace` `0.1.1` 的双平台 runtime identity、归档 URL、SHA-256、大小和 payload；runtime source revision 为 `b50f9967481ff201544200bad925dcb49e36e7e0`，source tree hash 为 `6d91171e4e580bedd6267f5ff2766e3cf57c35988368906b74635b46b7858818`。macOS 条目已有 Developer ID 签名及公证 Accepted 证据；Windows 条目明确为 unsigned，hosted x64 CI 已通过，Windows 11 ARM64 通过系统 x64 仿真运行。后者不能写成实体 Windows x64 客户端原生验证。Windows helper 是 `tools/scorace-runtime.cmd`，不要求修改或绕过 PowerShell ExecutionPolicy，也不要求关闭 SmartScreen、应用控制或其他系统保护。release 待主线程发布；不得用测试签名、示例值或未来地址补填或绕过校验。
+当前 `.scorace/runtime-lock.json` 已固定 Plugin `0.8.0-candidate.20260917.1` 与 `scorace` `0.1.1` 的双平台 runtime identity、归档 URL、SHA-256、大小和 payload；runtime source revision 为 `b50f9967481ff201544200bad925dcb49e36e7e0`，source tree hash 为 `6d91171e4e580bedd6267f5ff2766e3cf57c35988368906b74635b46b7858818`。macOS 条目已有 Developer ID 签名及公证 Accepted 证据；Windows 条目明确为 unsigned，hosted Windows x64 提供原生 x64 工程验证，Parallels Windows 11 ARM64 通过系统 x64 仿真运行。后者不能写成实体 Windows x64 客户端原生验证。Windows helper 是 `tools/scorace-runtime.cmd`，不要求修改或绕过 PowerShell ExecutionPolicy，也不要求关闭 SmartScreen、应用控制或其他系统保护。0.1.1 已作为公开试用版发布；不得用测试签名、示例值或未来地址补填或绕过校验。
+
+Windows helper 对受管 Plugin、runtime 或本地 archive 路径包含 `!` 的情况返回 `path_unsupported`。该限制不适用于学习内容或普通文本参数。
 
 固定 runtime 地址为：
 
