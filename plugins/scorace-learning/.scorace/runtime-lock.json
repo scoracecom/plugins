@@ -1,7 +1,7 @@
 {
   "schema": "scorace-runtime-lock/v2",
   "plugin_id": "scorace-learning",
-  "plugin_version": "0.8.0-candidate.20260916",
+  "plugin_version": "0.8.0-candidate.20260917",
   "program": "scorace",
   "program_version": "0.1.0",
   "cli_contract": "scorace-cli/v2",
