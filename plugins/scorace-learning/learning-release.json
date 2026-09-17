@@ -1,6 +1,6 @@
 {
   "schema": "scorace-learning-release/v1",
-  "plugin_version": "0.8.0-candidate.20260917",
+  "plugin_version": "0.8.0-candidate.20260917.1",
   "learning_api_version": "scorace-learning-api/v2",
   "learning_core_version": "scorace-study-state/v2",
   "build_source": "ScorAce product sources",
@@ -105,18 +105,18 @@
   "files": [
     {
       "path": ".codex-plugin/plugin.json",
-      "sha256": "69cb7f2abaaf3aaa649e02f2f5dd790d50c7fc9edd931021a4d41a3680b1c7dc",
-      "bytes": 2161
+      "sha256": "bfcdef01832760f988faab72bec68f15524df35f14b5d4d5485670259abc7cf1",
+      "bytes": 2163
     },
     {
       "path": ".scorace/runtime-lock.json",
-      "sha256": "98237a615fdc9562885e26561882d6ce0573bb38206d2d24c44ba9e52fe30048",
-      "bytes": 7714
+      "sha256": "390c826d0cd5eb69db1c667410711154a748db51efafa65e1674f328447b06bf",
+      "bytes": 7716
     },
     {
       "path": ".scorace/runtime-lock.windows.cmd",
-      "sha256": "f9d4cba6874fe50f508fef985f166d47fbc68d3d1ecb1d74f517c1f768450754",
-      "bytes": 2810
+      "sha256": "fbfbedd32be0c559f29856459821a64193d3f1b3eb1014d3fa7ce8dee7c57165",
+      "bytes": 2812
     },
     {
       "path": "LICENSE",
@@ -125,8 +125,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "1551cc184a340da28e60c992ef1ab31389f7048cc3255cc714d62b9173433d9a",
-      "bytes": 4155
+      "sha256": "184147c837bf94a4e8389948a416ed27adae78f7563dcea6514d675eeb0b210a",
+      "bytes": 4303
     },
     {
       "path": "skills/scorace-study/agents/openai.yaml",

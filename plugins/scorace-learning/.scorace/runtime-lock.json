@@ -1,9 +1,9 @@
 {
   "schema": "scorace-runtime-lock/v2",
   "plugin_id": "scorace-learning",
-  "plugin_version": "0.8.0-candidate.20260917",
+  "plugin_version": "0.8.0-candidate.20260917.1",
   "program": "scorace",
-  "program_version": "0.1.0",
+  "program_version": "0.1.1",
   "cli_contract": "scorace-cli/v2",
   "learning_api": "scorace-learning-api/v2",
   "state_compatibility": {
@@ -13,8 +13,8 @@
     ],
     "write_policy": "baseline-preserving"
   },
-  "source_revision": "240c6451e6e7accc03e3ce70271b25eda2e9e1a1",
-  "source_tree_sha256": "aa06385725691ec29826637549e293c88975d33547a78dbe747f25d8f58b176c",
+  "source_revision": "b50f9967481ff201544200bad925dcb49e36e7e0",
+  "source_tree_sha256": "6d91171e4e580bedd6267f5ff2766e3cf57c35988368906b74635b46b7858818",
   "features": {
     "study": true,
     "read_source": false,
@@ -33,21 +33,21 @@
         "team_id": "3G2K3NF4U6"
       },
       "archive": {
-        "url": "https://github.com/scoracecom/plugins/releases/download/scorace-v0.1.0/scorace-0.1.0-darwin-arm64.zip",
-        "sha256": "b0666b3711cfdbad39d0e0459b6c219ec4f3a0841a8e8a8e3a54a4d58b9da0d8",
-        "bytes": 39200447,
+        "url": "https://github.com/scoracecom/plugins/releases/download/scorace-v0.1.1/scorace-0.1.1-darwin-arm64.zip",
+        "sha256": "7155338572111861095ffdb01f16bdd979ca1d77912ecd4cb159bae927bf3075",
+        "bytes": 39200395,
         "format": "zip",
-        "root": "scorace-0.1.0-darwin-arm64"
+        "root": "scorace-0.1.1-darwin-arm64"
       },
       "executable": {
         "path": "bin/scorace",
-        "sha256": "60b53173fb446caf12368eacbff2856d7765dd0dbd75b549e975fab4182cb1ba",
+        "sha256": "470740fe11c4be1345221c544b674e0e803ac12ba09e7553038c34cf6f9ab5b4",
         "bytes": 122330752
       },
       "payload": [
         {
           "path": "bin/scorace",
-          "sha256": "60b53173fb446caf12368eacbff2856d7765dd0dbd75b549e975fab4182cb1ba",
+          "sha256": "470740fe11c4be1345221c544b674e0e803ac12ba09e7553038c34cf6f9ab5b4",
           "bytes": 122330752,
           "role": "runtime"
         },
@@ -59,7 +59,7 @@
         },
         {
           "path": "runtime-release.json",
-          "sha256": "418c2e0f6886c1ed457d6ca42e280f04ff4acdcddce5a7e6aa0142c7f7358091",
+          "sha256": "1c3778c454bd3b4967261d0cb8876ca49f7b011b163c51c815e2beb8c5bdc679",
           "bytes": 2988,
           "role": "metadata"
         },
@@ -89,8 +89,8 @@
         },
         {
           "path": "share/methods/scorace-study/method.md",
-          "sha256": "b6c83335808284a107bda45d469501463676818a4a4fa8ab15fd4adcdf6222a4",
-          "bytes": 1623,
+          "sha256": "af18eb44a2ebe6acc2e6e5e2c85e42f21493fc991bca8fa2d833f3514fe91aa3",
+          "bytes": 1637,
           "role": "public_resource"
         },
         {
@@ -107,8 +107,8 @@
         },
         {
           "path": "share/methods/scorace-study/SKILL.md",
-          "sha256": "873b87349794d40c67e1046b02357ed2f2361f022256ca1167533f47137acc38",
-          "bytes": 50234,
+          "sha256": "2376797ec083e241a5c7769460aebd16ef0934b5a8821b7895b8228af35f0d78",
+          "bytes": 50296,
           "role": "public_resource"
         },
         {
@@ -130,21 +130,21 @@
         "kind": "unsigned"
       },
       "archive": {
-        "url": "https://github.com/scoracecom/plugins/releases/download/scorace-v0.1.0/scorace-0.1.0-windows-x64.zip",
-        "sha256": "3858bb38087b1cb8d21c5fc1f7889488ca2a65211d7c46475182703a7fed2c34",
-        "bytes": 35534385,
+        "url": "https://github.com/scoracecom/plugins/releases/download/scorace-v0.1.1/scorace-0.1.1-windows-x64.zip",
+        "sha256": "8355e4006ef572c12e705be73a3c5666203acd1050c68fb4b7fb193b5bd333a1",
+        "bytes": 35534412,
         "format": "zip",
-        "root": "scorace-0.1.0-windows-x64"
+        "root": "scorace-0.1.1-windows-x64"
       },
       "executable": {
         "path": "bin/scorace.exe",
-        "sha256": "3d860a43e4d3b55dbeb8a3cfd5afb06b8d6702d177ea0a60d43bd1b671fe084f",
+        "sha256": "703ca91700b7cf9a7ace8727e5f57135b56d7924a8821e12078cf0e36dd3e094",
         "bytes": 94839808
       },
       "payload": [
         {
           "path": "bin/scorace.exe",
-          "sha256": "3d860a43e4d3b55dbeb8a3cfd5afb06b8d6702d177ea0a60d43bd1b671fe084f",
+          "sha256": "703ca91700b7cf9a7ace8727e5f57135b56d7924a8821e12078cf0e36dd3e094",
           "bytes": 94839808,
           "role": "runtime"
         },
@@ -156,7 +156,7 @@
         },
         {
           "path": "runtime-release.json",
-          "sha256": "410e242fb32859375d53ffa2b0afacf012290077abbc4b51c6e71ac1b7d40337",
+          "sha256": "a134181a6d62b90cfaba29a263fc563b7b124a4c587749b1e0650eed0a45223f",
           "bytes": 2990,
           "role": "metadata"
         },
@@ -186,8 +186,8 @@
         },
         {
           "path": "share/methods/scorace-study/method.md",
-          "sha256": "b6c83335808284a107bda45d469501463676818a4a4fa8ab15fd4adcdf6222a4",
-          "bytes": 1623,
+          "sha256": "af18eb44a2ebe6acc2e6e5e2c85e42f21493fc991bca8fa2d833f3514fe91aa3",
+          "bytes": 1637,
           "role": "public_resource"
         },
         {
@@ -204,8 +204,8 @@
         },
         {
           "path": "share/methods/scorace-study/SKILL.md",
-          "sha256": "873b87349794d40c67e1046b02357ed2f2361f022256ca1167533f47137acc38",
-          "bytes": 50234,
+          "sha256": "2376797ec083e241a5c7769460aebd16ef0934b5a8821b7895b8228af35f0d78",
+          "bytes": 50296,
           "role": "public_resource"
         },
         {
