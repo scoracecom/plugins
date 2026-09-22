@@ -1,46 +1,46 @@
-# ScorAce 学习 Plugin（公开试用候选）
+# ScorAce 学习 Plugin
 
-这是公开的薄 Plugin 候选：包含 Skill、方法资源和按平台选择的 runtime helper，不携带 ScorAce 学习核心源码。优先使用宿主已经装配的 ScorAce 产品学习 API；普通材料的取得、读取、解析和理解仍由宿主承担。
+这是 ScorAce 的宿主 Plugin 候选 `0.8.0-candidate.20260922.1`：包含 Skill、方法资源和发行清单，不携带学习核心源码、旧 binary、SEA 或平台 runtime helper。宿主负责会话、文件、授权、命令执行和呈现；Skill 只提供学习工作指引。受管学习操作统一通过 npm 包 `@scorace/cli` 执行；本候选的实际验证版本为 `0.1.2`，Plugin 的官方 `.codex-plugin/plugin.json` 不承载 CLI 私有字段。
 
-本次公开试用发行固定为 Plugin `0.8.0-candidate.20260917.1` 与程序 `scorace` `0.1.1`，不是稳定版；0.1.1 已作为公开试用版发布。安装入口和仓库说明见上级公开仓库 README。
+## 安装、升级与卸载
 
-## 平台与命令
-
-本期候选有两个目标：原生 macOS 26.x / arm64（`darwin-arm64`）和 Windows x64 程序在 Windows 11 ARM64 系统 x64 仿真中的运行路径（`windows-x64`）。Windows ARM64 仿真不是实体 Windows x64 客户端原生验证。根据实际宿主平台只选择对应 helper；两个 helper 的 `check`、`prepare`、`run` 语义一致，helper 只负责检查、经授权准备和透传同一 `scorace` 程序，不是第二套学习 CLI。
-
-macOS 26.x / arm64：
+公开用户从 [ScorAce Plugins](https://github.com/scoracecom/plugins) 获取 Plugin，并使用 Codex 的原生 Plugin 机制：
 
 ```sh
-"<本 Skill 目录>/../../tools/scorace-runtime.sh" check
-"<本 Skill 目录>/../../tools/scorace-runtime.sh" prepare --allow-download
-"<本 Skill 目录>/../../tools/scorace-runtime.sh" run study ...
+git clone https://github.com/scoracecom/plugins.git
+cd plugins
+codex plugin marketplace add .
+codex plugin add scorace-learning@scorace
 ```
 
-Windows 11 ARM64 / x64 仿真（cmd.exe）：
+升级时按取得 Plugin 的来源刷新 Git 内容。通过 `https://github.com/scoracecom/plugins.git` 配置的 Git marketplace 运行 `codex plugin marketplace upgrade scorace`，再执行 `codex plugin add scorace-learning@scorace`；从本地 clone 使用的用户运行 `git -C /path/to/plugins pull --ff-only`，再执行同一个 `codex plugin add` 命令。两种来源都要核对宿主返回的版本与安装路径，并在新 Codex 会话中继续。卸载使用 `codex plugin remove scorace-learning@scorace`。ScorAce 源仓的 `plugins/scorace-learning` 只用于生成和检查候选，不是用户的 npm 安装入口；不要把 Plugin 复制到学习目录。
 
-```bat
-cmd.exe /d /s /c ""<本 Skill 目录>\..\..\tools\scorace-runtime.cmd" check"
-cmd.exe /d /s /c ""<本 Skill 目录>\..\..\tools\scorace-runtime.cmd" prepare --allow-download"
-cmd.exe /d /s /c ""<本 Skill 目录>\..\..\tools\scorace-runtime.cmd" run study ..."
+## CLI 准备与协议
+
+需要受管学习操作时，先运行：
+
+```sh
+scorace version --json
 ```
 
-`check` 是只读配对检查；缺少准确程序时，在已有用户授权下用对应平台的 `prepare --allow-download`，或 `prepare --archive ABSOLUTE_ZIP_PATH`；`run` 只在完整检查通过后透传 `scorace` 顶层命令。拒绝授权、缺件或校验失败时只停止依赖本地程序的操作，不修改系统保护或全局 PATH。
+只接受合法 JSON 对象 `{ "version": "...", "protocol": 3 }`；`protocol: 3` 是唯一兼容性判定，`version` 只用于诊断。版本检查不读取学习正文，也不创建学习状态。
 
-## 锁定与信任边界
+找不到 `scorace` 时，先运行 `node --version` 和 `npm --version`。缺少 Node.js（需要 24 或更高版本）或 npm 时，清晰报告缺少的依赖，不伪造可用 CLI。Node.js 与 npm 都可用后，在用户正常授权下执行一次：
 
-Plugin 使用 `scorace-runtime-lock/v2`，按实际平台从唯一的 `darwin-arm64` 或 `windows-x64` 条目选择准确版本；Windows helper 读取由 `.scorace/runtime-lock.json` 自动生成的 `.scorace/runtime-lock.windows.cmd` projection，构建检查会拒绝 projection 漂移，不应手写第二份锁。每个平台的归档、可执行文件和 payload 都必须逐项匹配 lock 中的精确路径、大小和 SHA-256 摘要。摘要只证明字节完整性，不替代操作系统信任。
+```sh
+npm install -g @scorace/cli@latest
+```
 
-macOS 条目要求 Apple Developer ID（`system_trust.kind: apple_developer_id`）和该条目自己的 Team ID。Windows 条目明确为 unsigned（`system_trust.kind: unsigned`），不要求也不填写 Apple Team ID；Windows 的 unsigned 与精确摘要不等于 Windows 系统信任。Windows 测试期间 PowerShell ExecutionPolicy 为 `Restricted`、Defender 保持启用且其他系统安全设置不变；应用控制记录为评估状态，不宣称已验证强制执行模式。SmartScreen 和其他系统策略仍由 Windows 决定，不需要关闭或绕过。
+安装完成后重新运行 `scorace version --json`。若 `protocol` 不是 `3`，在用户授权下最多再执行一次上述升级，再检查一次；仍不兼容、输出不是合法 JSON 或命令失败时停止受管操作并保留原请求。`scorace` 命令名可能命中旧 Plugin 的 binary；只有合法 JSON 且 `protocol: 3` 才能继续，旧 binary、SEA/helper 或其他输出都按不可用处理。不得改 PATH、绕过 npm 发行入口或绕过授权。
 
-当前 `.scorace/runtime-lock.json` 已固定 Plugin `0.8.0-candidate.20260917.1` 与 `scorace` `0.1.1` 的双平台 runtime identity、归档 URL、SHA-256、大小和 payload；runtime source revision 为 `b50f9967481ff201544200bad925dcb49e36e7e0`，source tree hash 为 `6d91171e4e580bedd6267f5ff2766e3cf57c35988368906b74635b46b7858818`。macOS 条目已有 Developer ID 签名及公证 Accepted 证据；Windows 条目明确为 unsigned，hosted Windows x64 提供原生 x64 工程验证，Parallels Windows 11 ARM64 通过系统 x64 仿真运行。后者不能写成实体 Windows x64 客户端原生验证。Windows helper 是 `tools/scorace-runtime.cmd`，不要求修改或绕过 PowerShell ExecutionPolicy，也不要求关闭 SmartScreen、应用控制或其他系统保护。0.1.1 已作为公开试用版发布；不得用测试签名、示例值或未来地址补填或绕过校验。
+协议通过后，所有学习者、空间、资产、方法、网络、任务、互动和复盘操作都使用同一个 `scorace study ...` CLI。CLI 缺失、不兼容或执行失败只影响依赖它的受管操作；普通问答和宿主已经取得的材料仍按实际能力处理。
 
-Windows helper 对受管 Plugin、runtime 或本地 archive 路径包含 `!` 的情况返回 `path_unsupported`。该限制不适用于学习内容或普通文本参数。
+## 发行与许可说明
 
-固定 runtime 地址为：
+`learning-release.json` 固定记录 `cli_package: "@scorace/cli"` 与 `cli_protocol: 3`，以及 Plugin/API/Core 版本和公开文件摘要；这些字段不复制到官方宿主 manifest。npm 是 CLI 的发行机制，Plugin 的安装、启用、更新和卸载仍沿用宿主标准机制。
 
-- macOS：<https://github.com/scoracecom/plugins/releases/download/scorace-v0.1.1/scorace-0.1.1-darwin-arm64.zip>
-- Windows：<https://github.com/scoracecom/plugins/releases/download/scorace-v0.1.1/scorace-0.1.1-windows-x64.zip>
+Plugin 缓存只保存公开发行物。用户选择的学习目录保存 Markdown、附件和其他学习成果，程序状态保存于用户应用状态目录，用户方法仍位于宿主的 `CODEX_HOME/skills` 方法目录；升级或卸载 Plugin 不删除这些内容，也不覆盖用户方法。旧 Plugin 的运行时和 helper 已退出当前发行，不能作为 CLI 回退入口。
 
-本候选仍不是稳定版。lock 中的精确 SHA-256 只证明归档及 payload 完整性，不替代操作系统信任；请保持 Windows 系统保护开启。
+当前正式支持和发布验证仅覆盖 macOS 与 Windows；两者使用同一个 Plugin、npm CLI 和 Learning Core。其他操作系统不承诺支持，也不纳入发布验证。
 
-Plugin 版本、`learning-release.json`、runtime lock 和方法投影必须保持同源；程序由独立的 `scorace` 归档提供。
+仓库和 CLI 的 npm 元数据使用 `UNLICENSED`，表示没有授予标准开源许可；这不承诺代码保密，也不自动授予额外使用权。用户成果保存在用户明确选择的学习空间，不放入 Plugin 缓存。
