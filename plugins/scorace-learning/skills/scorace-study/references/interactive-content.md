@@ -50,9 +50,9 @@
 }
 ```
 
-### 公开 Plugin 的 fragment、反馈与保存输入
+### CLI 的 fragment、反馈与保存输入
 
-公开 Plugin helper 的 `--json` 是输入标志：从标准输入读取一个 JSON 对象直到 EOF，JSON 不放在 argv。没有持久引用时，`demo fragment --json` 的最小步骤选择 descriptor 如下；`identify`、`fixed` 等只是本次描述内的局部标识，不是 ScorAce 内部 ID：
+`scorace study ... --json` 的 `--json` 是输入标志：从标准输入读取一个 JSON 对象直到 EOF，JSON 不放在 argv。没有持久引用时，`demo fragment --json` 的最小步骤选择 descriptor 如下；`identify`、`fixed` 等只是本次描述内的局部标识，不是 ScorAce 内部 ID：
 
 ```json
 {
@@ -63,10 +63,10 @@
 }
 ```
 
-把上述对象交给 helper（例如先放入 `$REQUEST_JSON`）才能得到 `operation_status: "rendered"`：
+把上述对象通过 CLI（例如先放入 `$REQUEST_JSON`）才能得到 `operation_status: "rendered"`：
 
 ```sh
-printf '%s' "$REQUEST_JSON" | "<本 Skill 目录>/../../tools/scorace-runtime.sh" run study demo fragment --json
+printf '%s' "$REQUEST_JSON" | scorace study demo fragment --json
 ```
 
 `ephemeral: true` 和 `demo_local_*` 只表示本轮临时描述，不是已保存成果。保留同一次返回的完整 `demo` 与 `scene`（或 `host_descriptor`），反馈和保存复用它们：
@@ -85,8 +85,8 @@ printf '%s' "$REQUEST_JSON" | "<本 Skill 目录>/../../tools/scorace-runtime.sh
 `title`、`purpose` 只在保存时需要；把对象从 stdin 分别传给 `demo feedback --json` 与 `demo save --json`：
 
 ```sh
-printf '%s' "$FEEDBACK_JSON" | "<本 Skill 目录>/../../tools/scorace-runtime.sh" run study demo feedback --json
-printf '%s' "$SAVE_JSON" | "<本 Skill 目录>/../../tools/scorace-runtime.sh" run study demo save --json
+printf '%s' "$FEEDBACK_JSON" | scorace study demo feedback --json
+printf '%s' "$SAVE_JSON" | scorace study demo save --json
 ```
 
 只有 `demo save` 成功回执的 `saved_asset_ref` 才能重开；用该实际值从 stdin 调用 `demo reopen --json`。临时 `demo_local_*` 不可冒充保存引用。
