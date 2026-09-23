@@ -9,11 +9,11 @@ description: 用 ScorAce 管理范围明确的本地学习者、学习空间和�
 
 ## 准备 ScorAce CLI 并继续原请求
 
-本 Skill 只通过 `scorace` CLI 执行受管学习操作；普通解释和材料取得、读取、解析由宿主承担。需要 CLI 时先运行 `scorace version --json`，只接受合法 JSON 对象 `{ "version": "...", "protocol": 7 }`；`protocol: 7` 是唯一兼容性判定，`version` 只用于诊断。版本检查不得读取学习正文或创建学习状态。
+本 Skill 只通过 `scorace` CLI 执行受管学习操作；普通解释和材料取得、读取、解析由宿主承担。需要 CLI 时先运行 `scorace version --json`，只接受合法 JSON 对象 `{ "version": "...", "protocol": 8 }`；`protocol: 8` 是唯一兼容性判定，`version` 只用于诊断。版本检查不得读取学习正文或创建学习状态。
 
 找不到 `scorace` 时，先分别运行 `node --version` 和 `npm --version`：缺少 Node.js 时报告“未找到 ScorAce CLI，且本机缺少 Node.js（需要 Node.js 24 或更高版本），无法安装 `@scorace/cli`”；缺少 npm 时报告“未找到 ScorAce CLI，且本机缺少 npm，无法安装 `@scorace/cli`”。Node.js 与 npm 都可用后，向用户请求正常授权，再执行一次 `npm install -g @scorace/cli@latest`，随后重新运行 `scorace version --json`。安装失败或授权被拒绝时保留原请求，只报告 CLI 不可用。
 
-如果版本 JSON 的 `protocol` 不是 `7`，向用户说明当前 CLI 协议不兼容；在取得正常授权后最多执行一次 `npm install -g @scorace/cli@latest`，再运行一次 `scorace version --json`。重试后仍不是 `7`、输出不是合法 JSON 或版本命令失败时停止 CLI 操作，不改 PATH、不使用其他 ScorAce 入口、不直接读取源码。协议通过后，使用同一个 `scorace study ...` 命令继续原请求；安装或升级成功不等于学习操作或保存已经成功。
+如果版本 JSON 的 `protocol` 不是 `8`，向用户说明当前 CLI 协议不兼容；在取得正常授权后最多执行一次 `npm install -g @scorace/cli@latest`，再运行一次 `scorace version --json`。重试后仍不是 `8`、输出不是合法 JSON 或版本命令失败时停止 CLI 操作，不改 PATH、不使用其他 ScorAce 入口、不直接读取源码。协议通过后，使用同一个 `scorace study ...` 命令继续原请求；安装或升级成功不等于学习操作或保存已经成功。
 
 授权拒绝、安装失败或协议不兼容只停止依赖 CLI 的动作，如实说明未完成部分；不影响已经取得材料后的普通讲解。原操作是否已发布不明确时，先用 CLI 的共同读取操作核对，不盲目重放写入。准备重试不能重复保存；新会话仍按可读名称和原学习空间找回同一成果，而不是重新生成相似内容。
 
@@ -30,7 +30,9 @@ description: 用 ScorAce 管理范围明确的本地学习者、学习空间和�
 当用户要求保存、查找、读取、局部修改或继续学习任务时，使用 `scorace study <domain> <action> ...`；学习者、空间、资产和任务由共同 CLI 拥有，本 Skill 只是方法消费者。不要直接编辑资产正文、复制缓存副本、读取插件历史，或让用户填写内部状态 JSON。顶层命令始终是 `scorace`，CLI 缺失或不兼容时按上面的安装与协议流程处理，不下载零散源码替代受保护操作。
 
 - 先执行 `context show`；没有当前学习者或空间时，先让用户明确范围，再用 `profile create/select` 与 `space create/register/select`。选择使用稳定引用或唯一名称；同名歧义必须要求用户选择，不能猜测。
-- 档案操作是 `profile create/list/select/rename`；空间操作是 `space create/register/list/select/rename`。`space create` 和 `register` 都必须使用用户明确授权的绝对目录；只登记或创建目录，不移动原有内容；已登记空间根不能互相嵌套或重叠，避免不同范围混读。每个命令都带同一宿主会话的 `--session-id`（若宿主提供 `SCORACE_SESSION_ID`、`CODEX_THREAD_ID` 或 `CODEX_SESSION_ID`，脚本会复用；没有时保留首次结果中的不透明 `session_id`，后续命令显式传回；不要使用别的会话的内部值）。
+- 档案操作是 `profile create/list/select/rename/archive/restore`；空间操作是 `space create/register/list/select/rename/archive/restore`。归档保留原文件与稳定身份，并解除所有会话中的对应绑定；归档对象不能用于新任务，须明确恢复后再选择和读取历史。`space create` 和 `register` 都必须使用用户明确授权的绝对目录；只登记或创建目录，不移动原有内容；已登记空间根不能互相嵌套或重叠，避免不同范围混读。每个命令都带同一宿主会话的 `--session-id`（若宿主提供 `SCORACE_SESSION_ID`、`CODEX_THREAD_ID` 或 `CODEX_SESSION_ID`，脚本会复用；没有时保留首次结果中的不透明 `session_id`，后续命令显式传回；不要使用别的会话的内部值）。
+- 切换学习者或空间后检查返回的 `new_session_required`；归档也会为所有受影响的旧会话持续设置该提示。为 true 时在新宿主会话重新选择目标后再读取或写入私人内容；本地绑定切换不会清除宿主已经读到的聊天或文件内容，不将旧私人内容带到新对象。
+- 用户明确要多个学习者共用普通知识时，先取得实际正文，再用 `shared-knowledge save --title ... --content ...` 保存并保留返回的 `shared_ref`；其他学习者只用 `shared-knowledge read --shared-ref ...` 或 `context show --shared-ref ...` 明确选入。默认上下文不载入共享内容。不要把私人 `asset_ref`、作答、复盘、计划或文件路径直接晋升为共享；`shared-knowledge list/export` 只处理共享正文。受管范围不限制宿主对本机文件的直接访问。
 - 保存使用 `asset save --path <空间内相对路径> --content <原文>`；需要较长正文时通过标准输入传给 `--json` 或 `--content`，保持正文逐字一致。支持 UTF-8 `.md`、`.markdown`、`.txt` 和互动文本资源 `.html`、`.htm`、`.svg`、`.css`、`.js`，不会覆盖已存在文件。作业原件使用公共 `attachment import` / `attachment read`：只接受具有相符格式标识的 JPEG/JPG/PNG，单图不超过 20 MiB、一次最多 8 图且总量不超过 80 MiB；格式标识通过不等于保证图片可解码或文字可识别。导入后由 `StudyStore` 保存到 `attachments/<asset_ref>/original.<ext>`，不转码、不压缩、不把字节写入 JSON。成功后使用返回的 `asset_ref`，不要把聊天记录或历史副本当资产。
 - 查找使用 `asset search --query <词>`，阅读使用 `asset read --ref <asset_ref>` 或搜索结果中的现行相对路径。搜索和阅读只访问当前空间的现行文件，并明确报告 `external_new`、`external_modified`、`missing` 或读取失败；图片资产只返回原文件名、类型、摘要、大小和宿主可打开定位，状态为 `present`、`missing` 或 `modified`，绝不按文本读取或全文搜索。不要从状态目录中的系统历史、备份、临时产物或旧会话猜正文。普通学习文件可以使用 `history/`、`history.md`、`world-history.md` 等名称。
 - 局部更新必须先读取当前资产，并把返回的 `revision` 与 `sha256` 作为基线，调用 `asset update --ref ... --base-revision ... --base-sha256 ... --old-text ... --new-text ...`。旧文本必须在现行正文中恰好出现一次；过时、重复或外部改动会返回冲突，保留外部内容，不能改用整篇覆盖。整理前用 `asset references/history` 查看受管引用和历史；`asset archive/unarchive` 只改变归档状态，不删除正文或被引用的原练习。只有用户明确选定删除对象时才用 `asset delete --ref ... --request-key ... --base-revision ... --base-sha256 ...`，按回执说明仍存在或无法安全修复的引用，不连带删除附件、作答、错题本或题集。恢复使用 `asset restore`，必须明确目标历史修订和当前基线；路径被新文件占用或现行内容改变时不得覆盖，恢复成功会形成新的现行修订。删除中断时只按原 request key 重试或明确取消，不能绕开共同操作直接改文件。
@@ -167,7 +169,7 @@ description: 用 ScorAce 管理范围明确的本地学习者、学习空间和�
 - 用户说“这次跳过”“明天再做”“以后再做”或“放回待办”时，先 `context show` 确认当前学习者、空间及宿主提供的可信会话日期/用户时区，再用 `plan-item find` 按可读名称实际读取现行项目。名称唯一时无需重复确认；找不到或同名时分别说明并请求范围/候选选择，不能猜测。每个项目单独使用新的 `request_key` 和刚读回的文件/项目基线：`plan-item skip` → 主动跳过当前轮次；`plan-item defer` 携带 `scheduled_date: "YYYY-MM-DD"` → 延期到该日，携带显式 `scheduled_date: null` → 延期但尚未定日期；`plan-item restore-to-do` → 用同一 `plan_item_ref` 追加新的待做轮次。调整类操作不要求原题、复盘或目标当前可执行，但仍须通过范围、owner、CAS 和删除/墓碑保护。
 - “明天”“下周一”等相对日期必须由 Agent 按可信会话日期和用户时区先算成绝对 `YYYY-MM-DD` 再提交；不使用机器时区、UTC 或 `new Date()` 猜测，不追加时刻或提醒。缺少可信日期/时区时返回 `date_context_required` 并最小澄清；只说“以后再做”就保存 `null`，不擅自改成明天。日期到来、打开材料、生成建议或进程退出都不自动开始/完成，修改 `minutes` 也不是延期。
 - 用户缩短可用时间、改变学习重点或调整目标时，先用 `plan-item list` 读取当前 `remaining_plan` 和 `history`，并实际读取现行 `学习记忆.md`、相关复盘的当前判断及目标材料。复盘如有更正，只采用现行 owner 中的判断；旧判断只供回查。没有相关记录时按用户本次明确自述安排，不补造历史。先比较调整前后的剩余安排与取舍；用户指定时间窗口内的任务分钟总和不得超过该窗口可用时间，安排在其他未来窗口的延期任务不计入本窗口，也不应因此压缩或删除。无法在该窗口现实完成的部分要说明延期或取舍；需要改日期时继续使用既有 `defer` 和可信会话日期。行动、产出和目标关联要与新目标及已读材料相符，也不承诺最优。
-- 执行剩余计划调整前仍按上文检查 CLI 协议 6；旧版协议 5 包括不会保存 `remainingOrder` 的 `0.1.5`，不能把其写入成功当作顺序已保存。升级后仍非协议 6 时停止受管操作并报告实际限制。
+- 执行剩余计划调整前仍按上文检查 CLI 协议 8；旧版协议 5 包括不会保存 `remainingOrder` 的 `0.1.5`，不能把其写入成功当作顺序已保存。升级后仍非协议 8 时停止受管操作并报告实际限制。
 - `remaining_plan` 包含 todo、started、deferred 等未完成项，按 `remainingOrder` / `remaining_order` 升序；未设置顺序的旧项排在已设置项之后，同值或同为未设置时按当前轮次的创建顺序。`history` 保留终态项的创建顺序，旧 `plan_items` / `items` 列表保持兼容顺序。重排时只修订未完成项；completed、skipped、withdrawn 项及其轮次、结果和日期保持不变。`remainingOrder` 是 1 到 128 的整数，值越小越靠前；它表示当前轮次的剩余顺序，不表示日期。需要应用新顺序时给剩余项依次分配 1..N。
 - 按计划更新受影响项的分钟数、名称、具体行动、预期产出、basis 或 target refs 时，沿同一 `plan_item_ref` 调用 `plan-item revise`；仅在对应变化时更新字段。日期调整继续使用既有 `defer` / `restore-to-do` 语义和可信日期，不得用 `remainingOrder` 表示日期。每项先 `plan-item find` fresh-read，再带唯一的新 `request_key` 及最新文件/项目基线修订；下一项重新读取 owner 基线。revise 保留 todo/started/deferred 状态、当前轮次日期及已发生结果。
 - 每项写入后核对顶层结果与嵌套 `operation_status`，再 `plan-item find` 回读该项；整组结束后再次 `plan-item list`，比较 `remaining_plan`、终态 `history`、状态、日期、轮次和结果。只有回读与预期一致后才能回执。遇到并发变化、过时基线、外部编辑、删除进行中、幂等冲突或未知结果时停止旧顺序的后续写入并回读整个计划；按实际保存子集报告已改、未改和新现状，不盲目重放或声称整组成功。`already_received` / `recovered` 只有在同一请求结果及回读都确认时才算已保存。
