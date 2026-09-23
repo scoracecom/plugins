@@ -1,12 +1,12 @@
 {
   "schema": "scorace-learning-release/v1",
-  "plugin_version": "0.8.0-candidate.20260922.3",
+  "plugin_version": "0.8.0-candidate.20260923.1",
   "learning_api_version": "scorace-learning-api/v2",
   "learning_core_version": "scorace-study-state/v2",
   "build_source": "ScorAce product sources",
   "cli_package": "@scorace/cli",
   "cli_protocol": 5,
-  "source_tree_sha256": "aae43a318c9dcc2f5a6aeb3e7fdb1db962f14261084b0db9f1ba737edda40e39",
+  "source_tree_sha256": "af3d81f037e8e67fce4e150db4decd6ba9eb5d3d602d398d19229d7bc5cbf1ea",
   "source_files": [
     {
       "path": "methods/scorace-study/agents/openai.yaml",
@@ -30,8 +30,8 @@
     },
     {
       "path": "methods/scorace-study/method.md",
-      "sha256": "1d3460769381b33f27f9059aef25984ee510bf68caee837950d84fd3c67f9885",
-      "bytes": 2517
+      "sha256": "078233b36a04985d01b05675bee8b5c168dc460aa776b819670001487cef47da",
+      "bytes": 2712
     },
     {
       "path": "methods/scorace-study/references/interactive-content.md",
@@ -45,8 +45,8 @@
     },
     {
       "path": "methods/scorace-study/SKILL.md",
-      "sha256": "9d429d11a535bdbe8680c35b849a468eadd5bbf754fb062f25415c769e282afe",
-      "bytes": 53849
+      "sha256": "d156cc08a5d7ccd882a316671dd219ac1ac425719fc76df909dd0d40e79bc867",
+      "bytes": 53975
     },
     {
       "path": "scorace/adapters/learning/demo-cli.mjs",
@@ -107,7 +107,7 @@
   "files": [
     {
       "path": ".codex-plugin/plugin.json",
-      "sha256": "27efcbd5e21db68eeb0175abe10ef94b3fd8cf32b7214110696258946dd091b2",
+      "sha256": "3129a16c7f2074206d6f5d18afb7ac4489dc0aae70b2c6cfe9600eb5e978f40d",
       "bytes": 2163
     },
     {
@@ -117,8 +117,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "b83f3fc090ce8cc1cd0014223d65c5a88d0fec2b8f7e82893bae95faf988a1d6",
-      "bytes": 4011
+      "sha256": "9cfd21648c8f4681207c43cc7a60315525354cd79c7cb0604b7e0ed3856f6aaf",
+      "bytes": 4004
     },
     {
       "path": "skills/scorace-study/agents/openai.yaml",
@@ -142,8 +142,8 @@
     },
     {
       "path": "skills/scorace-study/method.md",
-      "sha256": "1d3460769381b33f27f9059aef25984ee510bf68caee837950d84fd3c67f9885",
-      "bytes": 2517
+      "sha256": "078233b36a04985d01b05675bee8b5c168dc460aa776b819670001487cef47da",
+      "bytes": 2712
     },
     {
       "path": "skills/scorace-study/references/interactive-content.md",
@@ -157,8 +157,8 @@
     },
     {
       "path": "skills/scorace-study/SKILL.md",
-      "sha256": "9d429d11a535bdbe8680c35b849a468eadd5bbf754fb062f25415c769e282afe",
-      "bytes": 53849
+      "sha256": "d156cc08a5d7ccd882a316671dd219ac1ac425719fc76df909dd0d40e79bc867",
+      "bytes": 53975
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
