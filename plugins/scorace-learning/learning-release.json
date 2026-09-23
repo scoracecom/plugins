@@ -117,8 +117,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "293b123a284c0279f633dee94998d2d5833c8215e172e62e66845df30bdcc12f",
-      "bytes": 4004
+      "sha256": "c092836cb2fc34b5dd7cf18166ba249b3491567ddb4c30fb6f29faf51a4e6d2f",
+      "bytes": 4160
     },
     {
       "path": "skills/scorace-study/agents/openai.yaml",
