@@ -1,6 +1,6 @@
 # ScorAce 学习 Plugin
 
-这是 ScorAce 的宿主 Plugin 候选 `0.8.0-candidate.20260923.1`：包含 Skill、方法资源和发行清单，不携带学习核心源码、旧 binary、SEA 或平台 runtime helper。宿主负责会话、文件、授权、命令执行和呈现；Skill 只提供学习工作指引。受管学习操作统一通过 npm 包 `@scorace/cli` 执行；本候选的 CLI 版本为 `0.1.5`，Plugin 的官方 `.codex-plugin/plugin.json` 不承载 CLI 私有字段。
+这是 ScorAce 的宿主 Plugin 候选 `0.8.0-candidate.20260923.2`：包含 Skill、方法资源和发行清单，不携带学习核心源码、旧 binary、SEA 或平台 runtime helper。宿主负责会话、文件、授权、命令执行和呈现；Skill 只提供学习工作指引。受管学习操作统一通过 npm 包 `@scorace/cli` 执行；本候选的 CLI 版本为 `0.1.6`，Plugin 的官方 `.codex-plugin/plugin.json` 不承载 CLI 私有字段。
 
 ## 安装、升级与卸载
 
@@ -23,7 +23,7 @@ codex plugin add scorace-learning@scorace
 scorace version --json
 ```
 
-只接受合法 JSON 对象 `{ "version": "...", "protocol": 5 }`；`protocol: 5` 是唯一兼容性判定，`version` 只用于诊断。版本检查不读取学习正文，也不创建学习状态。
+只接受合法 JSON 对象 `{ "version": "...", "protocol": 5 }`；一般学习操作以 `protocol: 5` 判断兼容。调整剩余计划还需要 CLI 至少为 `0.1.6`，旧版 `0.1.5` 同为 protocol 5 却不会保存顺序。版本检查不读取学习正文，也不创建学习状态。
 
 找不到 `scorace` 时，先运行 `node --version` 和 `npm --version`。缺少 Node.js（需要 24 或更高版本）或 npm 时，清晰报告缺少的依赖，不伪造可用 CLI。Node.js 与 npm 都可用后，在用户正常授权下执行一次：
 
@@ -31,7 +31,7 @@ scorace version --json
 npm install -g @scorace/cli@latest
 ```
 
-安装完成后重新运行 `scorace version --json`。若 `protocol` 不是 `5`，在用户授权下最多再执行一次上述升级，再检查一次；仍不兼容、输出不是合法 JSON 或命令失败时停止受管操作并保留原请求。`scorace` 命令名可能命中旧 Plugin 的 binary；只有合法 JSON 且 `protocol: 5` 才能继续，旧 binary、SEA/helper 或其他输出都按不可用处理。不得改 PATH、绕过 npm 发行入口或绕过授权。
+安装完成后重新运行 `scorace version --json`。若 `protocol` 不是 `5`，在用户授权下最多再执行一次上述升级，再检查一次；仍不兼容、输出不是合法 JSON 或命令失败时停止受管操作并保留原请求。`scorace` 命令名可能命中旧 Plugin 的 binary；一般学习操作须取得合法 JSON 且 `protocol: 5`，调整剩余计划还须通过上述最低版本检查。旧 binary、SEA/helper 或其他输出都按不可用处理。不得改 PATH、绕过 npm 发行入口或绕过授权。
 
 协议通过后，所有学习者、空间、资产、方法、网络、任务、互动和复盘操作都使用同一个 `scorace study ...` CLI。CLI 缺失、不兼容或执行失败只影响依赖它的受管操作；普通问答和宿主已经取得的材料仍按实际能力处理。
 

@@ -9,7 +9,7 @@ description: 用 ScorAce 管理范围明确的本地学习者、学习空间和�
 
 ## 准备 ScorAce CLI 并继续原请求
 
-本 Skill 只通过 `scorace` CLI 执行受管学习操作；普通解释和材料取得、读取、解析由宿主承担。需要 CLI 时先运行 `scorace version --json`，只接受合法 JSON 对象 `{ "version": "...", "protocol": 5 }`；`protocol: 5` 是唯一兼容性判定，`version` 只用于诊断。版本检查不得读取学习正文或创建学习状态。
+本 Skill 只通过 `scorace` CLI 执行受管学习操作；普通解释和材料取得、读取、解析由宿主承担。需要 CLI 时先运行 `scorace version --json`，只接受合法 JSON 对象 `{ "version": "...", "protocol": 5 }`；一般学习操作以 `protocol: 5` 判断兼容，新增能力还须满足对应小节的最低版本。版本检查不得读取学习正文或创建学习状态。
 
 找不到 `scorace` 时，先分别运行 `node --version` 和 `npm --version`：缺少 Node.js 时报告“未找到 ScorAce CLI，且本机缺少 Node.js（需要 Node.js 24 或更高版本），无法安装 `@scorace/cli`”；缺少 npm 时报告“未找到 ScorAce CLI，且本机缺少 npm，无法安装 `@scorace/cli`”。Node.js 与 npm 都可用后，向用户请求正常授权，再执行一次 `npm install -g @scorace/cli@latest`，随后重新运行 `scorace version --json`。安装失败或授权被拒绝时保留原请求，只报告 CLI 不可用。
 
@@ -157,15 +157,19 @@ description: 用 ScorAce 管理范围明确的本地学习者、学习空间和�
 
 ## 学习、练习与复习安排
 
-- 首批计划项操作只覆盖一个可执行行动，不等于完整 M10 计划系统。直接用用户当前目标、可用时间、自述和当前问题安排下一步或一个阶段；没有学习历史、记忆、题库或正式学习状态也能开始。信息足以给出有用安排时不要为了补全档案而阻塞；没有资产时生成完整可做的题目、回忆提示或检查任务，有资产时实际读取相关记忆、错题、题面或方法正文，并在任务中链接具体文件与小节。聊天中的下一步建议不会自动写成计划，也不自动创建 M06 task。
+- 计划项用局部操作保存单个行动，也可在用户改变时间或目标时调整多个未完成项；这仍不等于完整 M10 计划系统。直接用用户当前目标、可用时间、自述和当前问题安排下一步或一个阶段；没有学习历史、记忆、题库或正式学习状态也能开始。信息足以给出有用安排时不要为了补全档案而阻塞；没有资产时生成完整可做的题目、回忆提示或检查任务，有资产时实际读取相关记忆、错题、题面或方法正文，并在任务中链接具体文件与小节。聊天中的下一步建议不会自动写成计划，也不自动创建 M06 task。
 - 每项任务写清可识别的名称、具体行动、使用内容或完整题面、预期产出、所需分钟数和执行顺序/日期；总时长不超过用户可用时间，题量、书写、核对和纠错也要能在标注时间内现实完成，宁可减少题目并留出检查余量，不把大量动作机械压进分钟数。阶段计划给出合理的练习与复习间隔。不要只写“加强练习”“复习错题”或把尚未读取的资料列为已关联内容，也不声称安排最优或能保证提分。
 - 用户要求保存时，默认通过 `plan-item create` 把现行安排写到学习目录根部 `学习计划.md`；用户指定其他文件时以其选择为准。保存名称、分钟数、具体行动、预期产出、实际 review/target 引用；没有历史时允许空依据，但不能伪造历史。通过 `plan-item list` / `plan-item find` 按当前范围和可读名称查找，同名先消歧。计划正文仍是可直接查看和编辑的普通 Markdown，但受管状态与轮次由公共操作合同维护；任务状态使用清楚的“待做、完成、跳过、延期”等文字，并保留用户批注。
-- 开始或继续前先 `plan-item find` 实际读取现行行动、依据和目标；`plan-item start` 只在 todo、依据与材料仍可用时进入 started，started 项再次使用前同样核对，不绕过 `needs_confirmation`、`basis_deleted` 或 `basis_unavailable`。更正后调用 `plan-item revise`，沿同一 `plan_item_ref` 保留 todo/started 底层状态和已发生结果；completed/withdrawn 不经一般修订重新打开，需要再次学习时明确调用 `plan-item restore-to-do` 追加新轮次。只有用户明确报告完成且 M08/资产结果已真实保存并带固定 revision/SHA 时调用 `plan-item complete`；打开资料、提出建议或工具结束都不算完成。用户明确取消才调用 `plan-item withdraw`，保留复盘、材料和结果，并与另行调用的 M06 `task end` 分别回执。
+- 开始或继续前先 `plan-item find` 实际读取现行行动、依据和目标；`plan-item start` 只在 todo、依据与材料仍可用时进入 started，started 项再次使用前同样核对，不绕过 `needs_confirmation`、`basis_deleted` 或 `basis_unavailable`。更正后调用 `plan-item revise`，沿同一 `plan_item_ref` 保留 todo/started/deferred 底层状态和已发生结果；completed/skipped/withdrawn 不经一般修订重新打开，需要再次学习时明确调用 `plan-item restore-to-do` 追加新轮次。只有用户明确报告完成且 M08/资产结果已真实保存并带固定 revision/SHA 时调用 `plan-item complete`；打开资料、提出建议或工具结束都不算完成。用户明确取消才调用 `plan-item withdraw`，保留复盘、材料和结果，并与另行调用的 M06 `task end` 分别回执。
 - 用户说“这次跳过”“明天再做”“以后再做”或“放回待办”时，先 `context show` 确认当前学习者、空间及宿主提供的可信会话日期/用户时区，再用 `plan-item find` 按可读名称实际读取现行项目。名称唯一时无需重复确认；找不到或同名时分别说明并请求范围/候选选择，不能猜测。每个项目单独使用新的 `request_key` 和刚读回的文件/项目基线：`plan-item skip` → 主动跳过当前轮次；`plan-item defer` 携带 `scheduled_date: "YYYY-MM-DD"` → 延期到该日，携带显式 `scheduled_date: null` → 延期但尚未定日期；`plan-item restore-to-do` → 用同一 `plan_item_ref` 追加新的待做轮次。调整类操作不要求原题、复盘或目标当前可执行，但仍须通过范围、owner、CAS 和删除/墓碑保护。
 - “明天”“下周一”等相对日期必须由 Agent 按可信会话日期和用户时区先算成绝对 `YYYY-MM-DD` 再提交；不使用机器时区、UTC 或 `new Date()` 猜测，不追加时刻或提醒。缺少可信日期/时区时返回 `date_context_required` 并最小澄清；只说“以后再做”就保存 `null`，不擅自改成明天。日期到来、打开材料、生成建议或进程退出都不自动开始/完成，修改 `minutes` 也不是延期。
-- 每次调整后必须核对顶层操作结果及嵌套 `operation_status`，再调用 `plan-item find` 回读实际当前轮次、状态、安排日期、既往轮次、固定结果引用和历史摘要；只有回读确认后才能给用户回执。多项请求逐项执行并逐项回执，下一项重新取得共同 owner 的最新基线；一项失败不回滚、不冒充其他项成功，说明已改变、未改变和下一步。`already_received` 可作为同一请求已确认；`idempotency_conflict`、过时基线、外部编辑、删除进行中或未知协议均停止该项并保留错误事实。
-- 恢复已跳过/延期项目时，旧轮次和历史保持可回看，旧日期不再阻挡新轮次；恢复只进入 `todo`，不能顺手 `start`。用户对已完成项目说“再练一次”也只调用 `restore-to-do`：先让用户看到旧完成轮次及其结果，再以新轮次执行 `start`/`complete`；新轮次完成前不能显示完成，不能复用旧作答或旧反馈作为新结果。已撤回但未删除的项目同样可用该明确操作恢复；墓碑、已删除项目永不复活。
-- `needs_confirmation` 是现行依据对开始/完成的派生限制，不否定已保存的 skip/defer/restore 调整。依据被更正、删除或材料不可读时，回执同时说明“本次调整已保存”和“开始前仍需确认依据”；开始/完成仍按各自要求拒绝或继续。撤回始终是独立语义，不用 skip 冒充；不建设日历、提醒、重复任务、FSRS 或 #654 的完整时间/目标重排。
+- 用户缩短可用时间、改变学习重点或调整目标时，先用 `plan-item list` 读取当前 `remaining_plan` 和 `history`，并实际读取现行 `学习记忆.md`、相关复盘的当前判断及目标材料。复盘如有更正，只采用现行 owner 中的判断；旧判断只供回查。没有相关记录时按用户本次明确自述安排，不补造历史。先比较调整前后的剩余安排与取舍；用户指定时间窗口内的任务分钟总和不得超过该窗口可用时间，安排在其他未来窗口的延期任务不计入本窗口，也不应因此压缩或删除。无法在该窗口现实完成的部分要说明延期或取舍；需要改日期时继续使用既有 `defer` 和可信会话日期。行动、产出和目标关联要与新目标及已读材料相符，也不承诺最优。
+- 执行这种剩余计划调整前，额外检查 `scorace version --json` 的 CLI 版本至少为 `0.1.6`；`0.1.5` 虽同为 protocol 5，却不会保存 `remainingOrder`。版本不足时按上文既有的正常授权与升级流程安装 `@scorace/cli@latest` 并重新检查；仍不足时停止这项调整，报告 CLI 尚不支持，不能把旧版的写入成功当作顺序已保存。其他学习能力继续以 protocol 5 判断兼容。
+- `remaining_plan` 包含 todo、started、deferred 等未完成项，按 `remainingOrder` / `remaining_order` 升序；未设置顺序的旧项排在已设置项之后，同值或同为未设置时按当前轮次的创建顺序。`history` 保留终态项的创建顺序，旧 `plan_items` / `items` 列表保持兼容顺序。重排时只修订未完成项；completed、skipped、withdrawn 项及其轮次、结果和日期保持不变。`remainingOrder` 是 1 到 128 的整数，值越小越靠前；它表示当前轮次的剩余顺序，不表示日期。需要应用新顺序时给剩余项依次分配 1..N。
+- 按计划更新受影响项的分钟数、名称、具体行动、预期产出、basis 或 target refs 时，沿同一 `plan_item_ref` 调用 `plan-item revise`；仅在对应变化时更新字段。日期调整继续使用既有 `defer` / `restore-to-do` 语义和可信日期，不得用 `remainingOrder` 表示日期。每项先 `plan-item find` fresh-read，再带唯一的新 `request_key` 及最新文件/项目基线修订；下一项重新读取 owner 基线。revise 保留 todo/started/deferred 状态、当前轮次日期及已发生结果。
+- 每项写入后核对顶层结果与嵌套 `operation_status`，再 `plan-item find` 回读该项；整组结束后再次 `plan-item list`，比较 `remaining_plan`、终态 `history`、状态、日期、轮次和结果。只有回读与预期一致后才能回执。遇到并发变化、过时基线、外部编辑、删除进行中、幂等冲突或未知结果时停止旧顺序的后续写入并回读整个计划；按实际保存子集报告已改、未改和新现状，不盲目重放或声称整组成功。`already_received` / `recovered` 只有在同一请求结果及回读都确认时才算已保存。
+- 恢复已跳过/延期项目时，旧轮次和历史保持可回看，旧日期与排序不再阻挡新轮次；恢复只进入 `todo`，不能顺手 `start`。新轮次不继承旧 `remainingOrder`，未重新排序前按未设置顺序显示。用户对已完成项目说“再练一次”也只调用 `restore-to-do`：先让用户看到旧完成轮次及其结果，再以新轮次执行 `start`/`complete`；新轮次完成前不能显示完成，不能复用旧作答或旧反馈作为新结果。已撤回但未删除的项目同样可用该明确操作恢复；墓碑、已删除项目永不复活。
+- `needs_confirmation` 是现行依据对开始/完成的派生限制，不否定已保存的 revise/skip/defer/restore 调整。依据被更正、删除或材料不可读时，回执同时说明“本次调整已保存”和“开始前仍需确认依据”；开始/完成仍按各自要求拒绝或继续。撤回始终是独立语义，不用 skip 冒充；不建设日历、提醒、重复任务或后台调度。
 
 ## 查找、引用与组合
 

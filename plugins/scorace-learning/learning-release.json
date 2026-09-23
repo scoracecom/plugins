@@ -1,12 +1,12 @@
 {
   "schema": "scorace-learning-release/v1",
-  "plugin_version": "0.8.0-candidate.20260923.1",
+  "plugin_version": "0.8.0-candidate.20260923.2",
   "learning_api_version": "scorace-learning-api/v2",
   "learning_core_version": "scorace-study-state/v2",
   "build_source": "ScorAce product sources",
   "cli_package": "@scorace/cli",
   "cli_protocol": 5,
-  "source_tree_sha256": "af3d81f037e8e67fce4e150db4decd6ba9eb5d3d602d398d19229d7bc5cbf1ea",
+  "source_tree_sha256": "5af9f7a455231e4b96cb654001f9c1dbce149554901fad75ddf152b1e0d3759b",
   "source_files": [
     {
       "path": "methods/scorace-study/agents/openai.yaml",
@@ -45,8 +45,8 @@
     },
     {
       "path": "methods/scorace-study/SKILL.md",
-      "sha256": "d156cc08a5d7ccd882a316671dd219ac1ac425719fc76df909dd0d40e79bc867",
-      "bytes": 53975
+      "sha256": "5268ba092b927cd69fab84a822ad37dce5e66a3aa939117f79ef53e7a509bbd3",
+      "bytes": 56627
     },
     {
       "path": "scorace/adapters/learning/demo-cli.mjs",
@@ -70,8 +70,8 @@
     },
     {
       "path": "scorace/application/learning/review-plan-rules.mjs",
-      "sha256": "cee16f77519ceb29b5594f35c05a756a9170ddd4dbc6054720902dea09b09ab9",
-      "bytes": 35365
+      "sha256": "160a8bd58d3a8888ba8c4d695561c340072ffd95069baf01ce84ee4be027a8ed",
+      "bytes": 35872
     },
     {
       "path": "scorace/application/learning/study-primitives.mjs",
@@ -80,8 +80,8 @@
     },
     {
       "path": "scorace/application/learning/study-store.mjs",
-      "sha256": "501ad708833ea2ea98ccc0f876d7ebb4a6ea0919b082c5e3cf65623769f5d19a",
-      "bytes": 669917
+      "sha256": "3fd3182ec5afe556b4439c9efce28bacab0603f9d699bbab95e047ae1dc25c9c",
+      "bytes": 673659
     },
     {
       "path": "scorace/platform/learning/local-file-io.mjs",
@@ -107,7 +107,7 @@
   "files": [
     {
       "path": ".codex-plugin/plugin.json",
-      "sha256": "3129a16c7f2074206d6f5d18afb7ac4489dc0aae70b2c6cfe9600eb5e978f40d",
+      "sha256": "1eaa1561c1a3944cf05569fcedc113b73daf404d4f2034a67f8a03f0505240a3",
       "bytes": 2163
     },
     {
@@ -117,8 +117,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "9cfd21648c8f4681207c43cc7a60315525354cd79c7cb0604b7e0ed3856f6aaf",
-      "bytes": 4004
+      "sha256": "c092836cb2fc34b5dd7cf18166ba249b3491567ddb4c30fb6f29faf51a4e6d2f",
+      "bytes": 4160
     },
     {
       "path": "skills/scorace-study/agents/openai.yaml",
@@ -157,8 +157,8 @@
     },
     {
       "path": "skills/scorace-study/SKILL.md",
-      "sha256": "d156cc08a5d7ccd882a316671dd219ac1ac425719fc76df909dd0d40e79bc867",
-      "bytes": 53975
+      "sha256": "5268ba092b927cd69fab84a822ad37dce5e66a3aa939117f79ef53e7a509bbd3",
+      "bytes": 56627
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
