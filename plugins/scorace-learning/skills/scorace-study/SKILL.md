@@ -132,7 +132,7 @@ description: 用 ScorAce 管理范围明确的本地学习者、学习空间和�
 - 线上已有练习只引用实际返回的 `practice_ref`，先读取现行练习题面、来源和记录，再执行 `notebook entry add`。线下材料必须由宿主实际读取；确认选定题目后，先用 `practice create` 保存实际题面和 `source`，必要时带共同 `assetRefs`，成功后再加入错题本。若练习保存成功但成员写入失败，回执分别说明两步结果，不把部分成功说成整题已收录。
 - 没有原答案时只保存题面，绝不调用 `practice attempt add` 或伪造作答。`source` 对象、共同 `assetRefs`、识别/提取内容、教师批注和不确定范围分开保存；只有实际由 Agent 给出的帮助才能使用 `practice support add`，不能把教师痕迹冒充 Agent 反馈。回执分别说明题面、学习记录、来源引用和原件；只有原件经过受管保存并验证可回读时才说“原件已归档”，普通来源路径/URL、来源引用或提取文本不足以作此声明。
 - 错题本 Markdown manifest 是名称、成员数组顺序、标签、备注、原因与 `reviewSelection` 的唯一正文 owner；state 只保留当前 scope、`notebook_ref`、`manifest_asset_ref`、可信 revision/hash 和无正文幂等记录。成员引用既有 `practice_ref`，多个错题本共享同一题面、作答、支持和订正事实；重新加入同一成员按同请求或同现行关系幂等处理，不复制事实。
-- `position` 只改变 manifest 成员数组顺序；`reviewSelection` 是布尔值，`causeOrigin` 只能是 `user`、`teacher` 或 `agent`，`status` 只能是 `active` 或 `archived`。移出成员只改变关系，归档只改变组织状态，删除原练习或作答必须另行明确执行。错因建议、旧答案和一次表现不是永久学生标签，用户可在现行基线下修订。
+- `position` 只改变 manifest 成员数组顺序；`reviewSelection` 是布尔值，`causeOrigin` 只能是 `user`、`teacher` 或 `agent`，`status` 只能是 `active` 或 `archived`。移出成员只改变关系，归档只改变组织状态，均不删除原练习或作答。当前没有原练习的受管删除入口；用户请求删除时说明暂不支持，不直接删除文件，也不以移出或归档代替。错因建议、旧答案和一次表现不是永久学生标签，用户可在现行基线下修订。
 - `notebook search` 按题目描述、主题、标签或复习选择返回实际现行成员；外部编辑、失效引用、过时基线或新 hash 都要如实报告，组织 mutation 不静默接受外部正文。每轮写入前重新读取当前 manifest，不能用旧列表或旧会话猜测状态。用户明确选择历史版本时，Notebook 恢复才通过既有 `asset restore` 执行：先确认当前文件可读、现行 revision/hash 的 CAS 和可用目标历史，并验证历史 manifest 身份与当前 scope；成功后由公共操作递增 revision/hash、同步 Notebook 索引并保留幂等记录，旧的 `entry add` 重试不会复活恢复掉的成员。`asset update`、`asset move`、`asset move-recover` 及 `network patch`、`network move` 不得旁路修改 Notebook；不要把任意删除文件恢复说成受支持。
 
 ## 练习集重做与跨会话接续

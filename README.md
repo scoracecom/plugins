@@ -1,6 +1,6 @@
 # ScorAce Plugins
 
-ScorAce 的公开 Codex Plugin 仓库。本候选版本为 `scorace-learning` Plugin `0.8.0-candidate.20260922.3`；配套 npm CLI 为 `@scorace/cli` `0.1.4`，它不是稳定版。新增错题本收录与分类管理、有序题集保存、原题重做和跨会话接续。Plugin 只提供宿主元数据、Skill、方法资源和发行清单，不携带学习核心源码、CLI 二进制、SEA、runtime lock 或平台 helper。
+ScorAce 的公开 Codex Plugin 仓库。本候选版本为 `scorace-learning` Plugin `0.8.0-candidate.20260923.1`；配套 npm CLI 为 `@scorace/cli` `0.1.5`，它不是稳定版。支持错题本收录与分类管理、有序题集保存、原题重做和跨会话接续；移出或归档错题本成员不会删除原练习或作答。Plugin 只提供宿主元数据、Skill、方法资源和发行清单，不携带学习核心源码、CLI 二进制、SEA、runtime lock 或平台 helper。
 
 ## 安装
 
