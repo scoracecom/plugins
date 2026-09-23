@@ -1,6 +1,6 @@
 # ScorAce 学习 Plugin
 
-这是 ScorAce 的宿主 Plugin 候选 `0.8.0-candidate.20260923.1`：包含 Skill、方法资源和发行清单，不携带学习核心源码、旧 binary、SEA 或平台 runtime helper。宿主负责会话、文件、授权、命令执行和呈现；Skill 只提供学习工作指引。受管学习操作统一通过 npm 包 `@scorace/cli` 执行；本候选的 CLI 版本为 `0.1.5`，Plugin 的官方 `.codex-plugin/plugin.json` 不承载 CLI 私有字段。
+这是 ScorAce 的宿主 Plugin 候选 `0.8.0-candidate.20260923.2`：包含 Skill、方法资源和发行清单，不携带学习核心源码、旧 binary、SEA 或平台 runtime helper。宿主负责会话、文件、授权、命令执行和呈现；Skill 只提供学习工作指引。受管学习操作统一通过 npm 包 `@scorace/cli` 执行；本候选的 CLI 版本为 `0.1.6`，Plugin 的官方 `.codex-plugin/plugin.json` 不承载 CLI 私有字段。
 
 ## 安装、升级与卸载
 
