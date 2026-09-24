@@ -6,7 +6,7 @@
   "build_source": "ScorAce product sources",
   "cli_package": "@scorace/cli",
   "cli_protocol": 9,
-  "source_tree_sha256": "ce82353dbffe464f0c4fb752ff20d3f458cfed6db9b3b9f3f9cc17f6eeafc20c",
+  "source_tree_sha256": "6e7990c6d21288f7288eb0dd8d8203f19f6505f6fdfb9afc385a21c7ade37d2f",
   "source_files": [
     {
       "path": "methods/scorace-distillation/references/distillation-framework.md",
@@ -60,7 +60,7 @@
     },
     {
       "path": "methods/scorace-study/method.md",
-      "sha256": "b97db2e6a2ed4140294f436433901c0219e642cb3f41668746d8fa650334bcc2",
+      "sha256": "37ea4c43eca4e8e45f3d4c59f21c66888a02737b167641dc9078f3555cca4c01",
       "bytes": 2710
     },
     {
@@ -75,7 +75,7 @@
     },
     {
       "path": "methods/scorace-study/SKILL.md",
-      "sha256": "37e086f4e992a596098be65040ba43d25a4358714bda6bcfb405d41d2cc67c50",
+      "sha256": "8cfdac0c0a1b3e4de07fb6812a8905dc05e76bf9fead40b2a484d87244dce32f",
       "bytes": 62158
     },
     {
@@ -202,7 +202,7 @@
     },
     {
       "path": "skills/scorace-study/method.md",
-      "sha256": "b97db2e6a2ed4140294f436433901c0219e642cb3f41668746d8fa650334bcc2",
+      "sha256": "37ea4c43eca4e8e45f3d4c59f21c66888a02737b167641dc9078f3555cca4c01",
       "bytes": 2710
     },
     {
@@ -217,7 +217,7 @@
     },
     {
       "path": "skills/scorace-study/SKILL.md",
-      "sha256": "37e086f4e992a596098be65040ba43d25a4358714bda6bcfb405d41d2cc67c50",
+      "sha256": "8cfdac0c0a1b3e4de07fb6812a8905dc05e76bf9fead40b2a484d87244dce32f",
       "bytes": 62158
     },
     {
