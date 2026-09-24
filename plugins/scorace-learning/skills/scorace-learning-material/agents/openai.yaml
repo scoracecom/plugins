@@ -1,0 +1,4 @@
+interface:
+  display_name: "ScorAce 资料与数学蒸馏"
+  short_description: "忠实恢复教材、数学试题和已有解析结果的来源候选"
+  default_prompt: "使用 $scorace-learning-material 将我选择的材料制作成可审阅的资料候选包，保留原生结构、数学公式/图形、来源题候选和覆盖状态。"

@@ -1,6 +1,6 @@
 # ScorAce Plugins
 
-ScorAce 的公开 Codex Plugin 仓库。本候选版本为 `scorace-learning` Plugin `0.8.0-candidate.20260924.1`；配套 npm CLI 为 `@scorace/cli` `0.1.9`，它不是稳定版。支持本地学习者与空间的归档恢复、显式共享知识、资料稳定引用与安全恢复，也支持选定资产、网络、互动成果、练习、错题本、题集及复盘的本地目录包迁移。Plugin 只提供宿主元数据、Skill、方法资源和发行清单，不携带学习核心源码、CLI 二进制、SEA、runtime lock 或平台 helper。
+ScorAce 的公开 Codex Plugin 仓库。本候选版本为 `scorace-learning` Plugin `0.9.0-candidate.20260924.1`；配套 npm CLI 为 `@scorace/cli` `0.2.0`，它不是稳定版。同一个 Plugin 包含普通学习 `scorace-study`、考试目标候选 `scorace-assessment-target` 和学习资料候选 `scorace-learning-material` 三个 Skill；后两者仅在明确要求制作正式流程候选时使用。Plugin 只提供宿主元数据、Skill、方法资源和发行清单，不携带学习核心源码、CLI 二进制、SEA、runtime lock 或平台 helper。
 
 ## 安装
 
@@ -11,7 +11,7 @@ codex plugin marketplace add .
 codex plugin add scorace-learning@scorace
 ```
 
-安装完成后开启新的 Codex 会话，让宿主加载 `scorace-learning` Skill。卸载使用：
+安装完成后开启新的 Codex 会话，让宿主加载 ScorAce Plugin 的三个 Skill。卸载使用：
 
 ```bash
 codex plugin remove scorace-learning@scorace
@@ -27,13 +27,13 @@ Plugin 的安装、启用、升级和卸载都使用 Codex 的原生 Plugin 机�
 scorace version --json
 ```
 
-只有合法 JSON 对象 `{ "version": "...", "protocol": 8 }` 才能继续；`protocol: 8` 是一般学习操作的兼容性判定。找不到 CLI 时先检查 Node.js 和 npm；Node.js 需要 `>=24`。两者可用并取得用户正常授权后，执行一次：
+只有合法 JSON 对象 `{ "version": "...", "protocol": 9 }` 才能继续；`protocol: 9` 是当前 Plugin 的兼容性判定。找不到 CLI 时先检查 Node.js 和 npm；Node.js 需要 `>=24`。两者可用并取得用户正常授权后，执行一次：
 
 ```bash
 npm install -g @scorace/cli@latest
 ```
 
-随后再次运行版本检查。协议不符时最多再安装/升级一次并复查；仍失败、输出不是合法 JSON 或命令失败时停止受管操作，保留原学习请求。`scorace` 命令名可能命中旧 Plugin 的 binary；旧 binary、SEA/helper 或其他输出不满足 protocol 8 时按不可用处理，不改 PATH，也不调用旧 helper。
+随后再次运行版本检查。协议不符时最多再安装/升级一次并复查；仍失败、输出不是合法 JSON 或命令失败时停止受管操作，保留原请求。`scorace` 命令名可能命中旧 Plugin 的 binary；旧 binary、SEA/helper 或其他输出不满足 protocol 9 时按不可用处理，不改 PATH，也不调用旧 helper。
 
 ## 升级与数据保留
 

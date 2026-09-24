@@ -1,6 +1,6 @@
 # ScorAce 学习 Plugin
 
-这是 ScorAce 的宿主 Plugin 候选 `0.8.0-candidate.20260924.1`：包含 Skill、方法资源和发行清单，不携带学习核心源码、旧 binary、SEA 或平台 runtime helper。宿主负责会话、文件、授权、命令执行和呈现；Skill 只提供学习工作指引。受管学习操作统一通过 npm 包 `@scorace/cli` 执行；本候选的 CLI 版本为 `0.1.9`，Plugin 的官方 `.codex-plugin/plugin.json` 不承载 CLI 私有字段。
+这是 ScorAce 的宿主 Plugin 候选 `0.9.0-candidate.20260924.1`：包含 `scorace-study`、`scorace-assessment-target` 和 `scorace-learning-material` 三个 Skill、方法资源和发行清单，不携带学习核心源码、独立 executable、SEA 或平台 runtime helper。两个候选 Skill 只在用户明确要求制作或修订候选包时触发；普通学习继续使用 `scorace-study`。宿主负责会话、文件、授权、命令执行和呈现；Skill 只提供工作指引。受管操作统一通过 npm 包 `@scorace/cli` 执行；当前 CLI 版本为 `0.2.0`，Plugin 的官方 `.codex-plugin/plugin.json` 不承载 CLI 私有字段。
 
 ## 安装、升级与卸载
 
@@ -23,7 +23,7 @@ codex plugin add scorace-learning@scorace
 scorace version --json
 ```
 
-只接受合法 JSON 对象 `{ "version": "...", "protocol": 8 }`；`protocol: 8` 是唯一兼容性判定，`version` 只用于诊断。版本检查不读取学习正文，也不创建学习状态。
+只接受合法 JSON 对象 `{ "version": "...", "protocol": 9 }`；`protocol: 9` 是唯一兼容性判定，`version` 只用于诊断。版本检查不读取学习正文，也不创建学习状态。
 
 找不到 `scorace` 时，先运行 `node --version` 和 `npm --version`。缺少 Node.js（需要 24 或更高版本）或 npm 时，清晰报告缺少的依赖，不伪造可用 CLI。Node.js 与 npm 都可用后，在用户正常授权下执行一次：
 
@@ -31,13 +31,24 @@ scorace version --json
 npm install -g @scorace/cli@latest
 ```
 
-安装完成后重新运行 `scorace version --json`。若 `protocol` 不是 `8`，在用户授权下最多再执行一次上述升级，再检查一次；仍不兼容、输出不是合法 JSON 或命令失败时停止受管操作并保留原请求。`scorace` 命令名可能命中旧 Plugin 的 binary；只有合法 JSON 且 `protocol: 8` 才能继续，旧 binary、SEA/helper 或其他输出都按不可用处理。不得改 PATH、绕过 npm 发行入口或绕过授权。
+安装完成后重新运行 `scorace version --json`。若 `protocol` 不是 `9`，在用户授权下最多再执行一次上述升级，再检查一次；仍不兼容、输出不是合法 JSON 或命令失败时停止受管操作并保留原请求。`scorace` 命令名可能命中旧发行物的 binary；只有合法 JSON 且 `protocol: 9` 才能继续。不得改 PATH、绕过 npm 发行入口或绕过授权。
 
-协议通过后，所有学习者、空间、资产、方法、网络、任务、互动和复盘操作都使用同一个 `scorace study ...` CLI。CLI 缺失、不兼容或执行失败只影响依赖它的受管操作；普通问答和宿主已经取得的材料仍按实际能力处理。
+协议通过后，学习者、空间、资产、方法、网络、任务、互动和复盘操作使用同一个 `scorace study ...` CLI；用户明确要求制作候选包时，两个候选 Skill 分别调用 `scorace distill target ...` 或 `scorace distill material ...`。CLI 缺失、不兼容或执行失败只影响依赖它的受管操作；普通问答和宿主已经取得的材料仍按实际能力处理。
+
+## 正式内容查询
+
+优先使用宿主提供且已获授权的正式查询工具。宿主没有该工具时，只有用户已授权一个确定的正式内容库绝对路径，才使用以下只读兼容命令：
+
+```sh
+scorace content search --formal-path <已授权绝对路径> --query <查询文本>
+scorace content get --formal-path <已授权绝对路径> --reference <正式对象引用>
+```
+
+命令不创建或重建索引，查询结果保留来源引用与核心状态，包括 `ok`、`insufficient_recall`、`unknown_object`、`index_unavailable`、`index_stale` 和 `tool_unavailable`。路径未授权、查询无结果、索引不可用、权限拒绝或命令缺失时如实说明局部不可用，继续可独立进行的普通学习；不从仓库、fixture 或 staged JSON 构造正式结果。
 
 ## 发行与许可说明
 
-`learning-release.json` 固定记录 `cli_package: "@scorace/cli"` 与 `cli_protocol: 8`，以及 Plugin/API/Core 版本和公开文件摘要；这些字段不复制到官方宿主 manifest。npm 是 CLI 的发行机制，Plugin 的安装、启用、更新和卸载仍沿用宿主标准机制。
+`learning-release.json` 固定记录 `cli_package: "@scorace/cli"` 与 `cli_protocol: 9`，以及 Plugin/API/Core 版本和公开文件摘要；这些字段不复制到官方宿主 manifest。npm 是 CLI 的发行机制，Plugin 的安装、启用、更新和卸载仍沿用宿主标准机制。
 
 Plugin 缓存只保存公开发行物。用户选择的学习目录保存 Markdown、附件和其他学习成果，程序状态保存于用户应用状态目录，用户方法仍位于宿主的 `CODEX_HOME/skills` 方法目录；升级或卸载 Plugin 不删除这些内容，也不覆盖用户方法。旧 Plugin 的运行时和 helper 已退出当前发行，不能作为 CLI 回退入口。
 
