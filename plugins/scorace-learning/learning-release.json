@@ -1,6 +1,6 @@
 {
   "schema": "scorace-learning-release/v1",
-  "plugin_version": "0.9.0-candidate.20260924.1",
+  "plugin_version": "0.9.1-candidate.20260924.1",
   "learning_api_version": "scorace-learning-api/v2",
   "learning_core_version": "scorace-study-state/v2",
   "build_source": "ScorAce product sources",
@@ -137,7 +137,7 @@
   "files": [
     {
       "path": ".codex-plugin/plugin.json",
-      "sha256": "1e870c4157179397037cbe9b280288fb44211bbbb1ccdaba94ac0710919401e8",
+      "sha256": "7dafcccc0fe41e9418f2138d217bdbef7ca2d1f2f66270c31f1011afd60f4554",
       "bytes": 2355
     },
     {
@@ -147,8 +147,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "a634294828fe4747751796242a74ff86d520866d7a5c813936738f9a3c664d89",
-      "bytes": 5083
+      "sha256": "58fe9d146d33b1bf63fa81c5b5d6f229481176747c961205b2f5947854b6913c",
+      "bytes": 5235
     },
     {
       "path": "references/distillation-framework.md",
