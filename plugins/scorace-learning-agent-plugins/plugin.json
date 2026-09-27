@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "scorace-learning",
+  "version": "0.9.1-candidate.20260927.1",
+  "description": "管理明确学习者和空间中的文本与作业原件资产、多文件知识网络和练习记录，保留原件、识别历史与个人修改，并支持跨会话接续学习。",
+  "author": {
+    "name": "ScorAce"
+  }
+}
